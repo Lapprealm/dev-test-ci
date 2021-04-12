@@ -9,8 +9,10 @@
         <form method="post" action="<?php echo base_url('hmifCreate');?>">
             <?php
                 if ($this->session->flashdata('errors')){
-                    echo '<div class="alert alert-danger">';
+                    echo '<div class="card alert alert-danger row mt-4">';
+                    echo '<div class="col-xs-12 col-sm-12 col-md-12">';
                     echo 'Please fill in the required forms.';
+                    echo "</div>";
                     echo "</div>";
                 }
             ?>
@@ -52,34 +54,34 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-check">
-                                    <div class="row">
+                                    <div class="row gy-1">
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="reaction" id="marah">
+                                            <input class="form-check-input" type="radio" name="reactionA" id="marah">
                                             <label class="form-check-label" for="marah">
                                                 😤 (Mengmarah)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="reaction" id="sedih">
+                                            <input class="form-check-input" type="radio" name="reactionA" id="sedih">
                                             <label class="form-check-label" for="sedih">
                                                 🙁 (Mengsedih)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="reaction" id="datar">
+                                            <input class="form-check-input" type="radio" name="reactionA" id="datar">
                                             <label class="form-check-label" for="datar">
                                                 😐 (Mengoke)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="reactionA" id="senang">
+                                            <label class="form-check-label" for="senang">
                                                 🙂 (Mengsenang)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="reactionA" id="puas">
+                                            <label class="form-check-label" for="puas">
                                                 😆 (Menghayyuk)
                                             </label>
                                         </div>
@@ -102,33 +104,33 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-check">
                                     <div class="row">
-                                        <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="reaction" id="marah">
+                                    <div class="col-xs col-sm col-md">
+                                            <input class="form-check-input" type="radio" name="reactionB" id="marah">
                                             <label class="form-check-label" for="marah">
                                                 😤 (Mengmarah)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="reaction" id="sedih">
+                                            <input class="form-check-input" type="radio" name="reactionB" id="sedih">
                                             <label class="form-check-label" for="sedih">
                                                 🙁 (Mengsedih)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="reaction" id="datar">
+                                            <input class="form-check-input" type="radio" name="reactionB" id="datar">
                                             <label class="form-check-label" for="datar">
                                                 😐 (Mengoke)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="reactionB" id="senang">
+                                            <label class="form-check-label" for="senang">
                                                 🙂 (Mengsenang)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="reactionB" id="puas">
+                                            <label class="form-check-label" for="puas">
                                                 😆 (Menghayyuk)
                                             </label>
                                         </div>
@@ -151,33 +153,33 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-check">
                                     <div class="row">
-                                        <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="reaction" id="marah">
+                                    <div class="col-xs col-sm col-md">
+                                            <input class="form-check-input" type="radio" name="reactionC" id="marah">
                                             <label class="form-check-label" for="marah">
                                                 😤 (Mengmarah)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="reaction" id="sedih">
+                                            <input class="form-check-input" type="radio" name="reactionC" id="sedih">
                                             <label class="form-check-label" for="sedih">
                                                 🙁 (Mengsedih)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="reaction" id="datar">
+                                            <input class="form-check-input" type="radio" name="reactionC" id="datar">
                                             <label class="form-check-label" for="datar">
                                                 😐 (Mengoke)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="reactionC" id="senang">
+                                            <label class="form-check-label" for="senang">
                                                 🙂 (Mengsenang)
                                             </label>
                                         </div>
                                         <div class="col-xs col-sm col-md">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="reactionC" id="puas">
+                                            <label class="form-check-label" for="puas">
                                                 😆 (Menghayyuk)
                                             </label>
                                         </div>
