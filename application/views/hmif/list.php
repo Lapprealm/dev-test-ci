@@ -16,8 +16,9 @@
 
     <thead>
         <tr>
-            <th>Title</th>
-            <th>Description</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Kelas</th>
             <th width="220px">Action</th>
         </tr>
     </thead>
