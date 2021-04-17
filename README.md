@@ -54,8 +54,8 @@ CREATE TABLE `data_aspirasi` (
   `srv_2` int(1) UNSIGNED NOT NULL,
   `srv_3` int(1) UNSIGNED NOT NULL,
   `keluhan` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `saran` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kritik` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `kritik` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `saran` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 ALTER TABLE `data_aspirasi`
