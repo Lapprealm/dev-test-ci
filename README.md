@@ -4,12 +4,13 @@ This is a repository containing miscellaneous web development stuffs I test.
 And since I'm kinda lazy to cope with this I'ma leave it here for backups.
 
 ## Setup and Running
-### XAMPP Setup
+### PHP Setup
 #### Linux
-Arch Linux :
+Arch Linux ([manual install here](https://irvanma.live/howto-php-archlinux.html)) :
 ```
 yay -S xampp
 ```
+
 Other Linux Distros :
 ```
 wget https://www.apachefriends.org/xampp-files/8.0.3/xampp-linux-x64-8.0.3-0-installer.run
