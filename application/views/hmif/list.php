@@ -10,7 +10,7 @@
         </div>
     </div>
 
-
+    
     <table class="table table-bordered">
 
 
@@ -32,9 +32,9 @@
             <td><?php echo $item->kelas; ?></td>     
         <td>
             <form method="DELETE" action="<?php echo base_url('hmif/delete/'.$item->id);?>">
-            <a class="btn btn-info" href="<?php echo base_url('hmif/'.$item->id) ?>"> show</a>
-            <a class="btn btn-primary" href="<?php echo base_url('hmif/edit/'.$item->id) ?>"> Edit</a>
-            <button type="submit" class="btn btn-danger"> Delete</button>
+                <a class="btn btn-info" href="<?php echo base_url('hmif/'.$item->id) ?>"> Show</a>
+                <a class="btn btn-primary" href="<?php echo base_url('hmif/edit/'.$item->id) ?>"> Edit</a>
+                <button type="submit" class="btn btn-danger"> Delete</button>
             </form>
         </td>     
         </tr>
