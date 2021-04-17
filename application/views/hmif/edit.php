@@ -18,19 +18,19 @@
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="input-group">
                                     <div class="input-group-text">Nama</div>
-                                    <input type="text" name="nama" class="form-control" value="<?php echo $item->nama; ?>>
+                                    <input type="text" name="nama" class="form-control" value="<?php echo $item->nama; ?>">
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="input-group">
                                     <div class="input-group-text">NIM</div>
-                                    <input type="text" name="nim" class="form-control" value="<?php echo $item->nim; ?>>
+                                    <input type="text" name="nim" class="form-control" value="<?php echo $item->nim; ?>">
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="input-group">
                                     <div class="input-group-text">Kelas</div>
-                                    <input type="text" name="kelas" class="form-control" value="<?php echo $item->kelas; ?>>
+                                    <input type="text" name="kelas" class="form-control" value="<?php echo $item->kelas; ?>">
                                 </div>
                             </div>
                         </div>
