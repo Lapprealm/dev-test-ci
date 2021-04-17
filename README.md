@@ -45,6 +45,18 @@ SET time_zone = "+00:00";
 CREATE DATABASE hmif;
 USE hmif;
 
+CREATE TABLE `ci_sessions` (
+  `id` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+ALTER TABLE `ci_sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
+COMMIT;
+
 CREATE TABLE `data_aspirasi` (
   `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
