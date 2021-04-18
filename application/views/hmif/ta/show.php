@@ -5,7 +5,7 @@
                 <h2> Show Item</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="<?php echo base_url('hmif');?>"> Back</a>
+                <a class="btn btn-primary" href="<?php echo base_url('ta');?>"> Back</a>
             </div>
         </div>
     </div>

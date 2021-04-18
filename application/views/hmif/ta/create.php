@@ -6,7 +6,7 @@
         </div>
     </section>
     <section class="container">
-        <form method="post" action="<?php echo base_url('hmifCreate');?>">
+        <form method="post" action="<?php echo base_url('taCreate');?>">
             <?php
                 if ($this->session->flashdata('errors')){
                     echo '<div class="card alert alert-danger row mt-4">';
@@ -223,7 +223,7 @@
                     <div class="d-flex justify-content-between align-items-center ps-2 pe-2">
                         <a class="btn btn-primary" href="
                         <?php 
-                            echo base_url('hmif'); 
+                            echo base_url('ta'); 
                             $this->session->sess_destroy(); 
                         ?>"> 
                             Back
