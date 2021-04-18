@@ -1,4 +1,4 @@
-<main>
+<main class="flex-shrink-0 pb-4">
     <section class="p-5 rounded-lg m-0" style="background-color: #E8E9EA;">
         <div class="container text-center">
             <p class="display-3"><b>Tampung Aspirasi</b></p>
@@ -17,7 +17,7 @@
                 }
             ?>
             <div class="row gy-4 mt-2">
-                <div class="card rounded-5 p-0">
+                <div class="card rounded-5 p-2 hover-shadow">
                     <h5 class="card-header">Identitas</h5>
                     <div class="card-body">
                         <div class="row gy-2">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                <div class="card rounded-5 p-0">
+                <div class="card rounded-5 p-2 hover-shadow">
                     <h5 class="card-header">Survey #1</h5>
                     <div class="card-body">
                         <div class="row gy-2">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
 
-                <div class="card rounded-5 p-0">
+                <div class="card rounded-5 p-2 hover-shadow">
                     <h5 class="card-header">Survey #2</h5>
                     <div class="card-body">
                         <div class="row gy-2">
@@ -141,7 +141,7 @@
                     </div>
                 </div>
 
-                <div class="card rounded-5 p-0">
+                <div class="card rounded-5 p-2 hover-shadow">
                     <h5 class="card-header">Survey #3</h5>
                     <div class="card-body">
                         <div class="row gy-2">
@@ -190,7 +190,7 @@
                     </div>
                 </div>
 
-                <div class="card rounded-5 p-0">
+                <div class="card rounded-5 p-2 hover-shadow">
                     <h5 class="card-header">Form Aspirasi</h5>
                     <div class="card-body">
                         <div class="row gy-2">
@@ -220,14 +220,16 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                    <a class="btn btn-primary mb-2 mt-2" href="
-                    <?php 
-                        echo base_url('hmif'); 
-                        $this->session->sess_destroy(); 
-                    ?>"> 
-                        Back
-                    </a>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="d-flex justify-content-between align-items-center ps-2 pe-2">
+                        <a class="btn btn-primary" href="
+                        <?php 
+                            echo base_url('hmif'); 
+                            $this->session->sess_destroy(); 
+                        ?>"> 
+                            Back
+                        </a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
             </div>
         </form>

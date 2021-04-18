@@ -1,4 +1,4 @@
-<main class="container">
+<main class="container flex-shrink-0 pb-4">
     <div class="row mb-3 mt-3">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left mb-3">
