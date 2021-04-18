@@ -23,30 +23,64 @@
 </head>
 <body class="d-flex flex-column h-100">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-0">
+  <div class="container d-flex justify-content-between align-items-center">
     <a class="navbar-brand" href="#">HMIF</a>
     <button
       class="navbar-toggler"
       type="button"
       data-mdb-toggle="collapse"
-      data-mdb-target="#navbarTogglerDemo02"
-      aria-controls="navbarTogglerDemo02"
+      data-mdb-target="#navbarToggler"
+      aria-controls="navbarToggler"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <i class="fas fa-bars"></i>
     </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse" id="navbarToggler">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/ta/create">Tampung Aspirasi</a>
         </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Informasi
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">IF Info</a></li>
+            <li><a class="dropdown-item" href="#">Open Recruitment</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Tentang HMIF
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Sejarah HMIF</a></li>
+            <li><a class="dropdown-item" href="#">Struktur Organisasi</a></li>
+          </ul>
+        </li>
         <li class="nav-item">
-          <a class="nav-link" href="/">Struktur Keanggotaan</a>
+          <a class="nav-link" href="/">Kontak</a>
         </li>
       </ul>
     </div>

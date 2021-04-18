@@ -1,4 +1,4 @@
-    <footer class="bg-light text-center mt-auto py-3 shadow-2-strong">
+    <footer class="bg-light text-center mt-auto py-3">
         <div class="container p-4">
             <section>
                 <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
