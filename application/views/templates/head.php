@@ -43,7 +43,7 @@
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/hmif/create">Tampung Aspirasi</a>
+          <a class="nav-link" href="/ta/create">Tampung Aspirasi</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/">Struktur Keanggotaan</a>
