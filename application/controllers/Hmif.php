@@ -36,7 +36,7 @@ class Hmif extends CI_Controller {
 
        $data['title'] = 'Tampung Aspirasi';
        $this->load->view('templates/head', $data);       
-       $this->load->view('hmif/list', $data);
+       $this->load->view('hmif/ta/list', $data);
        $this->load->view('templates/footer');
    }
 
@@ -53,7 +53,7 @@ class Hmif extends CI_Controller {
 
         $data['title'] = 'Tampung Aspirasi';
         $this->load->view('templates/head', $data);
-        $this->load->view('hmif/show',array('item'=>$item));
+        $this->load->view('hmif/ta/show',array('item'=>$item));
         $this->load->view('templates/footer');
    }
 
@@ -68,7 +68,7 @@ class Hmif extends CI_Controller {
 
         $data['title'] = 'Tampung Aspirasi';
         $this->load->view('templates/head', $data);
-        $this->load->view('hmif/create');
+        $this->load->view('hmif/ta/create');
         $this->load->view('templates/footer');   
    }
 
@@ -109,7 +109,7 @@ class Hmif extends CI_Controller {
 
         $data['title'] = 'Edit';
         $this->load->view('templates/head', $data);
-        $this->load->view('hmif/edit',array('item'=>$item));
+        $this->load->view('hmif/ta/edit',array('item'=>$item));
         $this->load->view('templates/footer');
    }
 
