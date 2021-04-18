@@ -34,8 +34,9 @@ class Hmif extends CI_Controller {
        $data['data'] = $this->hmif->get_hmif();
 
 
-       $this->load->view('templates/head', 'Index');       
-       $this->load->view('hmif/list',$data);
+       $data['title'] = 'Tampung Aspirasi';
+       $this->load->view('templates/head', $data);       
+       $this->load->view('hmif/list', $data);
        $this->load->view('templates/footer');
    }
 
@@ -47,12 +48,13 @@ class Hmif extends CI_Controller {
    */
    public function show($id)
    {
-      $item = $this->hmif->find_item($id);
+        $item = $this->hmif->find_item($id);
 
 
-      $this->load->view('templates/head', 'Show');
-      $this->load->view('hmif/show',array('item'=>$item));
-      $this->load->view('templates/footer');
+        $data['title'] = 'Tampung Aspirasi';
+        $this->load->view('templates/head', $data);
+        $this->load->view('hmif/show',array('item'=>$item));
+        $this->load->view('templates/footer');
    }
 
 
@@ -63,9 +65,11 @@ class Hmif extends CI_Controller {
    */
    public function create()
    {
-      $this->load->view('templates/head', 'Create');
-      $this->load->view('hmif/create');
-      $this->load->view('templates/footer');   
+
+        $data['title'] = 'Tampung Aspirasi';
+        $this->load->view('templates/head', $data);
+        $this->load->view('hmif/create');
+        $this->load->view('templates/footer');   
    }
 
 
@@ -101,12 +105,12 @@ class Hmif extends CI_Controller {
    */
    public function edit($id)
    {
-       $item = $this->hmif->find_item($id);
+        $item = $this->hmif->find_item($id);
 
-
-       $this->load->view('templates/head', 'Edit');
-       $this->load->view('hmif/edit',array('item'=>$item));
-       $this->load->view('templates/footer');
+        $data['title'] = 'Edit';
+        $this->load->view('templates/head', $data);
+        $this->load->view('hmif/edit',array('item'=>$item));
+        $this->load->view('templates/footer');
    }
 
 
@@ -129,8 +133,8 @@ class Hmif extends CI_Controller {
             $this->session->set_flashdata('errors', validation_errors());
             redirect(base_url('hmif/edit/'.$id));
         }else{ 
-          $this->hmif->update_item($id);
-          redirect(base_url('hmif'));
+        $this->hmif->update_item($id);
+        redirect(base_url('hmif'));
         }
    }
 
