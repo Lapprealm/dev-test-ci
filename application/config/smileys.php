@@ -1,13 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-| -------------------------------------------------------------------
-| SMILEYS
-| -------------------------------------------------------------------
-| https://codeigniter.com/user_guide/helpers/smiley_helper.html
-|
-*/
 $smileys = array(
 
 //	smiley			image name						width	height	alt

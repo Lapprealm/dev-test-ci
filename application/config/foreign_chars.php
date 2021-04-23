@@ -1,11 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-| -------------------------------------------------------------------
-| Foreign Characters
-| -------------------------------------------------------------------
-*/
 $foreign_characters = array(
 	'/ä|æ|ǽ/' => 'ae',
 	'/ö|œ/' => 'oe',

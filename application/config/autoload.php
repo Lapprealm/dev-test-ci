@@ -1,26 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-| -------------------------------------------------------------------
-| AUTO-LOADER
-| -------------------------------------------------------------------
-| These are the things you can load automatically:
-|
-| 1. Packages
-| 2. Libraries
-| 3. Drivers
-| 4. Helper files
-| 5. Custom config files
-| 6. Language files
-| 7. Models
-|
-*/
+$autoload['packages'] = array(
+    // Put packages here
+);
 
-$autoload['packages'] = array();
-$autoload['libraries'] = array();
-$autoload['drivers'] = array();
-$autoload['helper'] = array('url');
-$autoload['config'] = array();
-$autoload['language'] = array();
-$autoload['model'] = array();
+$autoload['libraries'] = array(
+    'upload',
+    'form_validation',
+    'session'
+);
+
+$autoload['drivers'] = array(
+    // Put drivers here
+);
+
+$autoload['helper'] = array(
+    'form',
+    'url'
+);
+
+$autoload['config'] = array(
+    // Put configs here
+);
+
+$autoload['language'] = array(
+    // Put languages here
+);
+
+$autoload['model'] = array(
+    // Put models here
+);
