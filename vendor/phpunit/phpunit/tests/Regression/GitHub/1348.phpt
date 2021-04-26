@@ -1,21 +1,18 @@
 --TEST--
 GH-1348: STDOUT/STDERR IO streams should exist in process isolation
 --SKIPIF--
-<?php
-if (defined('HHVM_VERSION')) {
-    print 'skip: PHP runtime required';
-}
-?>
+<?php if (defined("HHVM_VERSION")) {
+	print "skip: PHP runtime required";
+} ?>
 --FILE--
 <?php
+$_SERVER["argv"][1] = "--no-configuration";
+$_SERVER["argv"][] = "--report-useless-tests";
+$_SERVER["argv"][] = "--process-isolation";
+$_SERVER["argv"][] = "Issue1348Test";
+$_SERVER["argv"][] = __DIR__ . "/1348/Issue1348Test.php";
 
-$_SERVER['argv'][1] = '--no-configuration';
-$_SERVER['argv'][]  = '--report-useless-tests';
-$_SERVER['argv'][]  = '--process-isolation';
-$_SERVER['argv'][]  = 'Issue1348Test';
-$_SERVER['argv'][]  = __DIR__ . '/1348/Issue1348Test.php';
-
-require __DIR__ . '/../../bootstrap.php';
+require __DIR__ . "/../../bootstrap.php";
 PHPUnit_TextUI_Command::main();
 ?>
 --EXPECTF--

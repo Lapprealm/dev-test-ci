@@ -13,6 +13,7 @@
  *
  * @since Class available since Release 3.2.0
  */
-class PHP_CodeCoverage_MissingCoversAnnotationException extends PHP_CodeCoverage_RuntimeException
+class PHP_CodeCoverage_MissingCoversAnnotationException extends
+	PHP_CodeCoverage_RuntimeException
 {
 }

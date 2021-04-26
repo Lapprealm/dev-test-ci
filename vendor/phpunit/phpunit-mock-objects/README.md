@@ -8,7 +8,7 @@
 
 ## Requirements
 
-* PHP 5.6 is required but using the latest version of PHP is highly recommended
+- PHP 5.6 is required but using the latest version of PHP is highly recommended
 
 ## Installation
 
@@ -19,4 +19,3 @@ To add PHPUnit_MockObject as a local, per-project dependency to your project, si
             "phpunit/phpunit-mock-objects": "~3.1"
         }
     }
-

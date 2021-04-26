@@ -13,17 +13,18 @@
  *
  * @since Class available since Release 2.1.0
  */
-class PHPUnit_Util_TestDox_ResultPrinter_HTML extends PHPUnit_Util_TestDox_ResultPrinter
+class PHPUnit_Util_TestDox_ResultPrinter_HTML extends
+	PHPUnit_Util_TestDox_ResultPrinter
 {
-    /**
-     * @var bool
-     */
-    protected $printsHTML = true;
+	/**
+	 * @var bool
+	 */
+	protected $printsHTML = true;
 
-    /**
-     * @var string
-     */
-    private $pageHeader = <<<EOT
+	/**
+	 * @var string
+	 */
+	private $pageHeader = <<<EOT
 <!doctype html>
 <html lang="en">
     <head>
@@ -61,90 +62,92 @@ class PHPUnit_Util_TestDox_ResultPrinter_HTML extends PHPUnit_Util_TestDox_Resul
     <body>
 EOT;
 
-    /**
-     * @var string
-     */
-    private $classHeader = <<<EOT
+	/**
+	 * @var string
+	 */
+	private $classHeader = <<<EOT
 
         <h2 id="%s">%s</h2>
         <ul>
 
 EOT;
 
-    /**
-     * @var string
-     */
-    private $classFooter = <<<EOT
+	/**
+	 * @var string
+	 */
+	private $classFooter = <<<EOT
         </ul>
 EOT;
 
-    /**
-     * @var string
-     */
-    private $pageFooter = <<<EOT
+	/**
+	 * @var string
+	 */
+	private $pageFooter = <<<EOT
 
     </body>
 </html>
 EOT;
 
-    /**
-     * Handler for 'start run' event.
-     */
-    protected function startRun()
-    {
-        $this->write($this->pageHeader);
-    }
+	/**
+	 * Handler for 'start run' event.
+	 */
+	protected function startRun()
+	{
+		$this->write($this->pageHeader);
+	}
 
-    /**
-     * Handler for 'start class' event.
-     *
-     * @param string $name
-     */
-    protected function startClass($name)
-    {
-        $this->write(
-            sprintf(
-                $this->classHeader,
-                $name,
-                $this->currentTestClassPrettified
-            )
-        );
-    }
+	/**
+	 * Handler for 'start class' event.
+	 *
+	 * @param string $name
+	 */
+	protected function startClass($name)
+	{
+		$this->write(
+			sprintf(
+				$this->classHeader,
+				$name,
+				$this->currentTestClassPrettified
+			)
+		);
+	}
 
-    /**
-     * Handler for 'on test' event.
-     *
-     * @param string $name
-     * @param bool   $success
-     */
-    protected function onTest($name, $success = true)
-    {
-        if (!$success) {
-            $strikeOpen  = '<span style="text-decoration:line-through;">';
-            $strikeClose = '</span>';
-        } else {
-            $strikeOpen  = '';
-            $strikeClose = '';
-        }
+	/**
+	 * Handler for 'on test' event.
+	 *
+	 * @param string $name
+	 * @param bool   $success
+	 */
+	protected function onTest($name, $success = true)
+	{
+		if (!$success) {
+			$strikeOpen = '<span style="text-decoration:line-through;">';
+			$strikeClose = "</span>";
+		} else {
+			$strikeOpen = "";
+			$strikeClose = "";
+		}
 
-        $this->write('            <li>' . $strikeOpen . $name . $strikeClose . "</li>\n");
-    }
+		$this->write(
+			"            <li>" . $strikeOpen . $name . $strikeClose . "</li>\n"
+		);
+	}
 
-    /**
-     * Handler for 'end class' event.
-     *
-     * @param string $name
-     */
-    protected function endClass($name)
-    {
-        $this->write($this->classFooter);
-    }
+	/**
+	 * Handler for 'end class' event.
+	 *
+	 * @param string $name
+	 */
+	protected function endClass($name)
+	{
+		$this->write($this->classFooter);
+	}
 
-    /**
-     * Handler for 'end run' event.
-     */
-    protected function endRun()
-    {
-        $this->write($this->pageFooter);
-    }
+	/**
+	 * Handler for 'end run' event.
+	 */
+	protected function endRun()
+	{
+		$this->write($this->pageFooter);
+	}
 }

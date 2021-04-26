@@ -13,42 +13,42 @@ namespace org\bovigo\vfs\example;
  */
 class Example
 {
-    /**
-     * id of the example
-     *
-     * @type  string
-     */
-    protected $id;
-    /**
-     * a directory where we do something..
-     *
-     * @type  string
-     */
-    protected $directory;
+	/**
+	 * id of the example
+	 *
+	 * @type  string
+	 */
+	protected $id;
+	/**
+	 * a directory where we do something..
+	 *
+	 * @type  string
+	 */
+	protected $directory;
 
-    /**
-     * constructor
-     *
-     * @param  string  $id
-     */
-    public function __construct($id)
-    {
-        $this->id = $id;
-    }
+	/**
+	 * constructor
+	 *
+	 * @param  string  $id
+	 */
+	public function __construct($id)
+	{
+		$this->id = $id;
+	}
 
-    /**
-     * sets the directory
-     *
-     * @param  string  $directory
-     */
-    public function setDirectory($directory)
-    {
-        $this->directory = $directory . DIRECTORY_SEPARATOR . $this->id;
-        if (file_exists($this->directory) === false) {
-            mkdir($this->directory, 0700, true);
-        }
-    }
+	/**
+	 * sets the directory
+	 *
+	 * @param  string  $directory
+	 */
+	public function setDirectory($directory)
+	{
+		$this->directory = $directory . DIRECTORY_SEPARATOR . $this->id;
+		if (file_exists($this->directory) === false) {
+			mkdir($this->directory, 0700, true);
+		}
+	}
 
-    // more source code here...
+	// more source code here...
 }
 ?>

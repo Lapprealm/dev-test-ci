@@ -4,24 +4,24 @@ PHPUnit_Framework_MockObject_Generator::generate('ClassWithMethodWithVariadicArg
 <?php
 class ClassWithMethodWithVariadicArguments
 {
-    public function methodWithVariadicArguments($a, ...$parameters)
-    {
-    }
+	public function methodWithVariadicArguments($a, ...$parameters)
+	{
+	}
 }
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . "/../../vendor/autoload.php";
 
-$generator = new PHPUnit_Framework_MockObject_Generator;
+$generator = new PHPUnit_Framework_MockObject_Generator();
 
 $mock = $generator->generate(
-    'ClassWithMethodWithVariadicArguments',
-    array(),
-    'MockFoo',
-    true,
-    true
+	"ClassWithMethodWithVariadicArguments",
+	[],
+	"MockFoo",
+	true,
+	true
 );
 
-print $mock['code'];
+print $mock["code"];
 ?>
 --EXPECTF--
 class MockFoo extends ClassWithMethodWithVariadicArguments implements PHPUnit_Framework_MockObject_MockObject

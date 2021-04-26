@@ -19,8 +19,8 @@ The `Differ` class can be used to generate a textual representation of the diffe
 ```php
 use SebastianBergmann\Diff\Differ;
 
-$differ = new Differ;
-print $differ->diff('foo', 'bar');
+$differ = new Differ();
+print $differ->diff("foo", "bar");
 ```
 
 The code above yields the output below:
@@ -37,14 +37,14 @@ The `Parser` class can be used to parse a unified diff into an object graph:
 use SebastianBergmann\Diff\Parser;
 use SebastianBergmann\Git;
 
-$git = new Git('/usr/local/src/money');
+$git = new Git("/usr/local/src/money");
 
 $diff = $git->getDiff(
-  '948a1a07768d8edd10dcefa8315c1cbeffb31833',
-  'c07a373d2399f3e686234c4f7f088d635eb9641b'
+	"948a1a07768d8edd10dcefa8315c1cbeffb31833",
+	"c07a373d2399f3e686234c4f7f088d635eb9641b"
 );
 
-$parser = new Parser;
+$parser = new Parser();
 
 print_r($parser->parse($diff));
 ```

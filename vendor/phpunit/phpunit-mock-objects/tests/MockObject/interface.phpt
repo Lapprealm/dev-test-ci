@@ -4,22 +4,16 @@ PHPUnit_Framework_MockObject_Generator::generate('Foo', array(), 'MockFoo', true
 <?php
 interface Foo
 {
-    public function bar(Foo $foo);
+	public function bar(Foo $foo);
 }
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . "/../../vendor/autoload.php";
 
-$generator = new PHPUnit_Framework_MockObject_Generator;
+$generator = new PHPUnit_Framework_MockObject_Generator();
 
-$mock = $generator->generate(
-    'Foo',
-    array(),
-    'MockFoo',
-    true,
-    true
-);
+$mock = $generator->generate("Foo", [], "MockFoo", true, true);
 
-print $mock['code'];
+print $mock["code"];
 ?>
 --EXPECTF--
 class MockFoo implements PHPUnit_Framework_MockObject_MockObject, Foo

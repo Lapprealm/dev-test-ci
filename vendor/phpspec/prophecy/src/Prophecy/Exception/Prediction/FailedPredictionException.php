@@ -19,6 +19,7 @@ use RuntimeException;
  *
  * @author Konstantin Kudryashov <ever.zet@gmail.com>
  */
-class FailedPredictionException extends RuntimeException implements PredictionException
+class FailedPredictionException extends RuntimeException implements
+	PredictionException
 {
 }

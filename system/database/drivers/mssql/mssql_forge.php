@@ -35,7 +35,7 @@
  * @since	Version 1.3.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * MS SQL Forge Class
@@ -46,33 +46,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/database/
  */
-class CI_DB_mssql_forge extends CI_DB_forge {
-
+class CI_DB_mssql_forge extends CI_DB_forge
+{
 	/**
 	 * CREATE TABLE IF statement
 	 *
 	 * @var	string
 	 */
-	protected $_create_table_if	= "IF NOT EXISTS (SELECT * FROM sysobjects WHERE ID = object_id(N'%s') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)\nCREATE TABLE";
+	protected $_create_table_if = "IF NOT EXISTS (SELECT * FROM sysobjects WHERE ID = object_id(N'%s') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)\nCREATE TABLE";
 
 	/**
 	 * DROP TABLE IF statement
 	 *
 	 * @var	string
 	 */
-	protected $_drop_table_if	= "IF EXISTS (SELECT * FROM sysobjects WHERE ID = object_id(N'%s') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)\nDROP TABLE";
+	protected $_drop_table_if = "IF EXISTS (SELECT * FROM sysobjects WHERE ID = object_id(N'%s') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)\nDROP TABLE";
 
 	/**
 	 * UNSIGNED support
 	 *
 	 * @var	array
 	 */
-	protected $_unsigned		= array(
-		'TINYINT'	=> 'SMALLINT',
-		'SMALLINT'	=> 'INT',
-		'INT'		=> 'BIGINT',
-		'REAL'		=> 'FLOAT'
-	);
+	protected $_unsigned = [
+		"TINYINT" => "SMALLINT",
+		"SMALLINT" => "INT",
+		"INT" => "BIGINT",
+		"REAL" => "FLOAT",
+	];
 
 	// --------------------------------------------------------------------
 
@@ -86,16 +86,17 @@ class CI_DB_mssql_forge extends CI_DB_forge {
 	 */
 	protected function _alter_table($alter_type, $table, $field)
 	{
-		if (in_array($alter_type, array('ADD', 'DROP'), TRUE))
-		{
+		if (in_array($alter_type, ["ADD", "DROP"], true)) {
 			return parent::_alter_table($alter_type, $table, $field);
 		}
 
-		$sql = 'ALTER TABLE '.$this->db->escape_identifiers($table).' ALTER COLUMN ';
-		$sqls = array();
-		for ($i = 0, $c = count($field); $i < $c; $i++)
-		{
-			$sqls[] = $sql.$this->_process_column($field[$i]);
+		$sql =
+			"ALTER TABLE " .
+			$this->db->escape_identifiers($table) .
+			" ALTER COLUMN ";
+		$sqls = [];
+		for ($i = 0, $c = count($field); $i < $c; $i++) {
+			$sqls[] = $sql . $this->_process_column($field[$i]);
 		}
 
 		return $sqls;
@@ -113,21 +114,23 @@ class CI_DB_mssql_forge extends CI_DB_forge {
 	 */
 	protected function _attr_type(&$attributes)
 	{
-		if (isset($attributes['CONSTRAINT']) && strpos($attributes['TYPE'], 'INT') !== FALSE)
-		{
-			unset($attributes['CONSTRAINT']);
+		if (
+			isset($attributes["CONSTRAINT"]) &&
+			strpos($attributes["TYPE"], "INT") !== false
+		) {
+			unset($attributes["CONSTRAINT"]);
 		}
 
-		switch (strtoupper($attributes['TYPE']))
-		{
-			case 'MEDIUMINT':
-				$attributes['TYPE'] = 'INTEGER';
-				$attributes['UNSIGNED'] = FALSE;
+		switch (strtoupper($attributes["TYPE"])) {
+			case "MEDIUMINT":
+				$attributes["TYPE"] = "INTEGER";
+				$attributes["UNSIGNED"] = false;
 				return;
-			case 'INTEGER':
-				$attributes['TYPE'] = 'INT';
+			case "INTEGER":
+				$attributes["TYPE"] = "INT";
 				return;
-			default: return;
+			default:
+				return;
 		}
 	}
 
@@ -142,10 +145,12 @@ class CI_DB_mssql_forge extends CI_DB_forge {
 	 */
 	protected function _attr_auto_increment(&$attributes, &$field)
 	{
-		if ( ! empty($attributes['AUTO_INCREMENT']) && $attributes['AUTO_INCREMENT'] === TRUE && stripos($field['type'], 'int') !== FALSE)
-		{
-			$field['auto_increment'] = ' IDENTITY(1,1)';
+		if (
+			!empty($attributes["AUTO_INCREMENT"]) &&
+			$attributes["AUTO_INCREMENT"] === true &&
+			stripos($field["type"], "int") !== false
+		) {
+			$field["auto_increment"] = " IDENTITY(1,1)";
 		}
 	}
-
 }

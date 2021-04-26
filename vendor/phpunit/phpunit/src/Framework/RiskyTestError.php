@@ -14,6 +14,8 @@
  *
  * @since Class available since Release 4.0.0
  */
-class PHPUnit_Framework_RiskyTestError extends PHPUnit_Framework_AssertionFailedError implements PHPUnit_Framework_RiskyTest
+class PHPUnit_Framework_RiskyTestError
+	extends PHPUnit_Framework_AssertionFailedError
+	implements PHPUnit_Framework_RiskyTest
 {
 }

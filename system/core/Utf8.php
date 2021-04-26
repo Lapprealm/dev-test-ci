@@ -35,7 +35,7 @@
  * @since	Version 2.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * Utf8 Class
@@ -48,8 +48,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/libraries/utf8.html
  */
-class CI_Utf8 {
-
+class CI_Utf8
+{
 	/**
 	 * Class constructor
 	 *
@@ -60,21 +60,18 @@ class CI_Utf8 {
 	public function __construct()
 	{
 		if (
-			defined('PREG_BAD_UTF8_ERROR')				// PCRE must support UTF-8
-			&& (ICONV_ENABLED === TRUE OR MB_ENABLED === TRUE)	// iconv or mbstring must be installed
-			&& strtoupper(config_item('charset')) === 'UTF-8'	// Application charset must be UTF-8
-			)
-		{
-			define('UTF8_ENABLED', TRUE);
-			log_message('debug', 'UTF-8 Support Enabled');
-		}
-		else
-		{
-			define('UTF8_ENABLED', FALSE);
-			log_message('debug', 'UTF-8 Support Disabled');
+			defined("PREG_BAD_UTF8_ERROR") && // PCRE must support UTF-8
+			(ICONV_ENABLED === true or MB_ENABLED === true) && // iconv or mbstring must be installed
+			strtoupper(config_item("charset")) === "UTF-8" // Application charset must be UTF-8
+		) {
+			define("UTF8_ENABLED", true);
+			log_message("debug", "UTF-8 Support Enabled");
+		} else {
+			define("UTF8_ENABLED", false);
+			log_message("debug", "UTF-8 Support Disabled");
 		}
 
-		log_message('info', 'Utf8 Class Initialized');
+		log_message("info", "Utf8 Class Initialized");
 	}
 
 	// --------------------------------------------------------------------
@@ -89,15 +86,11 @@ class CI_Utf8 {
 	 */
 	public function clean_string($str)
 	{
-		if ($this->is_ascii($str) === FALSE)
-		{
-			if (MB_ENABLED)
-			{
-				$str = mb_convert_encoding($str, 'UTF-8', 'UTF-8');
-			}
-			elseif (ICONV_ENABLED)
-			{
-				$str = @iconv('UTF-8', 'UTF-8//IGNORE', $str);
+		if ($this->is_ascii($str) === false) {
+			if (MB_ENABLED) {
+				$str = mb_convert_encoding($str, "UTF-8", "UTF-8");
+			} elseif (ICONV_ENABLED) {
+				$str = @iconv("UTF-8", "UTF-8//IGNORE", $str);
 			}
 		}
 
@@ -118,7 +111,7 @@ class CI_Utf8 {
 	 */
 	public function safe_ascii_for_xml($str)
 	{
-		return remove_invisible_characters($str, FALSE);
+		return remove_invisible_characters($str, false);
 	}
 
 	// --------------------------------------------------------------------
@@ -134,16 +127,13 @@ class CI_Utf8 {
 	 */
 	public function convert_to_utf8($str, $encoding)
 	{
-		if (MB_ENABLED)
-		{
-			return mb_convert_encoding($str, 'UTF-8', $encoding);
-		}
-		elseif (ICONV_ENABLED)
-		{
-			return @iconv($encoding, 'UTF-8', $str);
+		if (MB_ENABLED) {
+			return mb_convert_encoding($str, "UTF-8", $encoding);
+		} elseif (ICONV_ENABLED) {
+			return @iconv($encoding, "UTF-8", $str);
 		}
 
-		return FALSE;
+		return false;
 	}
 
 	// --------------------------------------------------------------------
@@ -158,7 +148,6 @@ class CI_Utf8 {
 	 */
 	public function is_ascii($str)
 	{
-		return (preg_match('/[^\x00-\x7F]/S', $str) === 0);
+		return preg_match('/[^\x00-\x7F]/S', $str) === 0;
 	}
-
 }

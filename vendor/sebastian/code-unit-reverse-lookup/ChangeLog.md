@@ -6,10 +6,10 @@ All notable changes to `sebastianbergmann/code-unit-reverse-lookup` are document
 
 ### Changed
 
-* Changed PHP version constraint in `composer.json` from `^5.6 || ^7.0` to `>=5.6`
+- Changed PHP version constraint in `composer.json` from `^5.6 || ^7.0` to `>=5.6`
 
 ## 1.0.0 - 2016-02-13
 
-* Initial release
+- Initial release
 
 [1.0.2]: https://github.com/sebastianbergmann/code-unit-reverse-lookup/compare/1.0.1...1.0.2

@@ -35,7 +35,7 @@
  * @since	Version 2.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * CodeIgniter File Caching Class
@@ -46,8 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link
  */
-class CI_Cache_file extends CI_Driver {
-
+class CI_Cache_file extends CI_Driver
+{
 	/**
 	 * Directory in which to save cache files
 	 *
@@ -62,10 +62,10 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	public function __construct()
 	{
-		$CI =& get_instance();
-		$CI->load->helper('file');
-		$path = $CI->config->item('cache_path');
-		$this->_cache_path = ($path === '') ? APPPATH.'cache/' : $path;
+		$CI = &get_instance();
+		$CI->load->helper("file");
+		$path = $CI->config->item("cache_path");
+		$this->_cache_path = $path === "" ? APPPATH . "cache/" : $path;
 	}
 
 	// ------------------------------------------------------------------------
@@ -79,7 +79,7 @@ class CI_Cache_file extends CI_Driver {
 	public function get($id)
 	{
 		$data = $this->_get($id);
-		return is_array($data) ? $data['data'] : FALSE;
+		return is_array($data) ? $data["data"] : false;
 	}
 
 	// ------------------------------------------------------------------------
@@ -93,21 +93,20 @@ class CI_Cache_file extends CI_Driver {
 	 * @param	bool	$raw	Whether to store the raw value (unused)
 	 * @return	bool	TRUE on success, FALSE on failure
 	 */
-	public function save($id, $data, $ttl = 60, $raw = FALSE)
+	public function save($id, $data, $ttl = 60, $raw = false)
 	{
-		$contents = array(
-			'time'		=> time(),
-			'ttl'		=> $ttl,
-			'data'		=> $data
-		);
+		$contents = [
+			"time" => time(),
+			"ttl" => $ttl,
+			"data" => $data,
+		];
 
-		if (write_file($this->_cache_path.$id, serialize($contents)))
-		{
-			chmod($this->_cache_path.$id, 0640);
-			return TRUE;
+		if (write_file($this->_cache_path . $id, serialize($contents))) {
+			chmod($this->_cache_path . $id, 0640);
+			return true;
 		}
 
-		return FALSE;
+		return false;
 	}
 
 	// ------------------------------------------------------------------------
@@ -120,7 +119,9 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	public function delete($id)
 	{
-		return is_file($this->_cache_path.$id) ? unlink($this->_cache_path.$id) : FALSE;
+		return is_file($this->_cache_path . $id)
+			? unlink($this->_cache_path . $id)
+			: false;
 	}
 
 	// ------------------------------------------------------------------------
@@ -136,19 +137,14 @@ class CI_Cache_file extends CI_Driver {
 	{
 		$data = $this->_get($id);
 
-		if ($data === FALSE)
-		{
-			$data = array('data' => 0, 'ttl' => 60);
-		}
-		elseif ( ! is_int($data['data']))
-		{
-			return FALSE;
+		if ($data === false) {
+			$data = ["data" => 0, "ttl" => 60];
+		} elseif (!is_int($data["data"])) {
+			return false;
 		}
 
-		$new_value = $data['data'] + $offset;
-		return $this->save($id, $new_value, $data['ttl'])
-			? $new_value
-			: FALSE;
+		$new_value = $data["data"] + $offset;
+		return $this->save($id, $new_value, $data["ttl"]) ? $new_value : false;
 	}
 
 	// ------------------------------------------------------------------------
@@ -164,19 +160,14 @@ class CI_Cache_file extends CI_Driver {
 	{
 		$data = $this->_get($id);
 
-		if ($data === FALSE)
-		{
-			$data = array('data' => 0, 'ttl' => 60);
-		}
-		elseif ( ! is_int($data['data']))
-		{
-			return FALSE;
+		if ($data === false) {
+			$data = ["data" => 0, "ttl" => 60];
+		} elseif (!is_int($data["data"])) {
+			return false;
 		}
 
-		$new_value = $data['data'] - $offset;
-		return $this->save($id, $new_value, $data['ttl'])
-			? $new_value
-			: FALSE;
+		$new_value = $data["data"] - $offset;
+		return $this->save($id, $new_value, $data["ttl"]) ? $new_value : false;
 	}
 
 	// ------------------------------------------------------------------------
@@ -188,7 +179,7 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	public function clean()
 	{
-		return delete_files($this->_cache_path, FALSE, TRUE);
+		return delete_files($this->_cache_path, false, true);
 	}
 
 	// ------------------------------------------------------------------------
@@ -201,7 +192,7 @@ class CI_Cache_file extends CI_Driver {
 	 * @param	string	user/filehits
 	 * @return	mixed	FALSE
 	 */
-	public function cache_info($type = NULL)
+	public function cache_info($type = null)
 	{
 		return get_dir_file_info($this->_cache_path);
 	}
@@ -216,29 +207,26 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	public function get_metadata($id)
 	{
-		if ( ! is_file($this->_cache_path.$id))
-		{
-			return FALSE;
+		if (!is_file($this->_cache_path . $id)) {
+			return false;
 		}
 
-		$data = unserialize(file_get_contents($this->_cache_path.$id));
+		$data = unserialize(file_get_contents($this->_cache_path . $id));
 
-		if (is_array($data))
-		{
-			$mtime = filemtime($this->_cache_path.$id);
+		if (is_array($data)) {
+			$mtime = filemtime($this->_cache_path . $id);
 
-			if ( ! isset($data['ttl'], $data['time']))
-			{
-				return FALSE;
+			if (!isset($data["ttl"], $data["time"])) {
+				return false;
 			}
 
-			return array(
-				'expire' => $data['time'] + $data['ttl'],
-				'mtime'	 => $mtime
-			);
+			return [
+				"expire" => $data["time"] + $data["ttl"],
+				"mtime" => $mtime,
+			];
 		}
 
-		return FALSE;
+		return false;
 	}
 
 	// ------------------------------------------------------------------------
@@ -267,20 +255,18 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	protected function _get($id)
 	{
-		if ( ! is_file($this->_cache_path.$id))
-		{
-			return FALSE;
+		if (!is_file($this->_cache_path . $id)) {
+			return false;
 		}
 
-		$data = unserialize(file_get_contents($this->_cache_path.$id));
+		$data = unserialize(file_get_contents($this->_cache_path . $id));
 
-		if ($data['ttl'] > 0 && time() > $data['time'] + $data['ttl'])
-		{
-			file_exists($this->_cache_path.$id) && unlink($this->_cache_path.$id);
-			return FALSE;
+		if ($data["ttl"] > 0 && time() > $data["time"] + $data["ttl"]) {
+			file_exists($this->_cache_path . $id) &&
+				unlink($this->_cache_path . $id);
+			return false;
 		}
 
 		return $data;
 	}
-
 }

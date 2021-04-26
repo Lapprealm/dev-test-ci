@@ -23,59 +23,59 @@ use phpDocumentor\Reflection\DocBlock\Tag;
  */
 class LinkTag extends Tag
 {
-    /** @var string */
-    protected $link = '';
+	/** @var string */
+	protected $link = "";
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getContent()
-    {
-        if (null === $this->content) {
-            $this->content = "{$this->link} {$this->description}";
-        }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getContent()
+	{
+		if (null === $this->content) {
+			$this->content = "{$this->link} {$this->description}";
+		}
 
-        return $this->content;
-    }
+		return $this->content;
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setContent($content)
-    {
-        parent::setContent($content);
-        $parts = preg_split('/\s+/Su', $this->description, 2);
+	/**
+	 * {@inheritdoc}
+	 */
+	public function setContent($content)
+	{
+		parent::setContent($content);
+		$parts = preg_split("/\s+/Su", $this->description, 2);
 
-        $this->link = $parts[0];
+		$this->link = $parts[0];
 
-        $this->setDescription(isset($parts[1]) ? $parts[1] : $parts[0]);
+		$this->setDescription(isset($parts[1]) ? $parts[1] : $parts[0]);
 
-        $this->content = $content;
-        return $this;
-    }
+		$this->content = $content;
+		return $this;
+	}
 
-    /**
-    * Gets the link
-    *
-    * @return string
-    */
-    public function getLink()
-    {
-        return $this->link;
-    }
+	/**
+	 * Gets the link
+	 *
+	 * @return string
+	 */
+	public function getLink()
+	{
+		return $this->link;
+	}
 
-    /**
-    * Sets the link
-    *
-    * @param string $link The link
-    *
-    * @return $this
-    */
-    public function setLink($link)
-    {
-        $this->link = $link;
+	/**
+	 * Sets the link
+	 *
+	 * @param string $link The link
+	 *
+	 * @return $this
+	 */
+	public function setLink($link)
+	{
+		$this->link = $link;
 
-        $this->content = null;
-        return $this;
-    }
+		$this->content = null;
+		return $this;
+	}
 }

@@ -4,28 +4,22 @@ PHPUnit_Framework_MockObject_Generator::generate('Foo', array('bar'), 'MockFoo',
 <?php
 class Foo
 {
-    public function bar(Foo $foo)
-    {
-    }
+	public function bar(Foo $foo)
+	{
+	}
 
-    public function baz(Foo $foo)
-    {
-    }
+	public function baz(Foo $foo)
+	{
+	}
 }
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . "/../../vendor/autoload.php";
 
-$generator = new PHPUnit_Framework_MockObject_Generator;
+$generator = new PHPUnit_Framework_MockObject_Generator();
 
-$mock = $generator->generate(
-    'Foo',
-    array('bar'),
-    'MockFoo',
-    true,
-    true
-);
+$mock = $generator->generate("Foo", ["bar"], "MockFoo", true, true);
 
-print $mock['code'];
+print $mock["code"];
 ?>
 --EXPECTF--
 class MockFoo extends Foo implements PHPUnit_Framework_MockObject_MockObject

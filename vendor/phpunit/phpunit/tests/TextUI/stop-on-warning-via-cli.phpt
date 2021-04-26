@@ -2,12 +2,13 @@
 phpunit --stop-on-warning StopOnWarningTestSuite ./tests/_files/StopOnWarningTestSuite.php
 --FILE--
 <?php
-$_SERVER['argv'][1] = '--no-configuration';
-$_SERVER['argv'][2] = '--stop-on-warning';
-$_SERVER['argv'][3] = 'StopOnWarningTestSuite';
-$_SERVER['argv'][4] = dirname(dirname(__FILE__)) . '/_files/StopOnWarningTestSuite.php';
+$_SERVER["argv"][1] = "--no-configuration";
+$_SERVER["argv"][2] = "--stop-on-warning";
+$_SERVER["argv"][3] = "StopOnWarningTestSuite";
+$_SERVER["argv"][4] =
+	dirname(dirname(__FILE__)) . "/_files/StopOnWarningTestSuite.php";
 
-require __DIR__ . '/../bootstrap.php';
+require __DIR__ . "/../bootstrap.php";
 PHPUnit_TextUI_Command::main();
 ?>
 --EXPECTF--

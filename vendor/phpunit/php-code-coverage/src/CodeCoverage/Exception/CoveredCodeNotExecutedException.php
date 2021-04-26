@@ -13,6 +13,7 @@
  *
  * @since Class available since Release 3.1.0
  */
-class PHP_CodeCoverage_CoveredCodeNotExecutedException extends PHP_CodeCoverage_RuntimeException
+class PHP_CodeCoverage_CoveredCodeNotExecutedException extends
+	PHP_CodeCoverage_RuntimeException
 {
 }

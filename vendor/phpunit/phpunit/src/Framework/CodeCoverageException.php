@@ -11,6 +11,7 @@
 /**
  * @since Class available since Release 4.0.0
  */
-class PHPUnit_Framework_CodeCoverageException extends PHPUnit_Framework_Exception
+class PHPUnit_Framework_CodeCoverageException extends
+	PHPUnit_Framework_Exception
 {
 }

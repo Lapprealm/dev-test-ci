@@ -35,16 +35,16 @@ To add PHP_CodeCoverage as a local, per-project dependency to your project, simp
 
 ```php
 <?php
-$coverage = new PHP_CodeCoverage;
-$coverage->start('<name of test>');
+$coverage = new PHP_CodeCoverage();
+$coverage->start("<name of test>");
 
 // ...
 
 $coverage->stop();
 
-$writer = new PHP_CodeCoverage_Report_Clover;
-$writer->process($coverage, '/tmp/clover.xml');
+$writer = new PHP_CodeCoverage_Report_Clover();
+$writer->process($coverage, "/tmp/clover.xml");
 
-$writer = new PHP_CodeCoverage_Report_HTML;
-$writer->process($coverage, '/tmp/code-coverage-report');
+$writer = new PHP_CodeCoverage_Report_HTML();
+$writer->process($coverage, "/tmp/code-coverage-report");
 ```

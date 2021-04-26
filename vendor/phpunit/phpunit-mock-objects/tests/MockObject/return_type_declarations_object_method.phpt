@@ -1,32 +1,26 @@
 --TEST--
 PHPUnit_Framework_MockObject_Generator::generate('Foo', array(), 'MockFoo', true, true)
 --SKIPIF--
-<?php
-if (!method_exists('ReflectionMethod', 'getReturnType')) print 'skip: PHP >= 7.0.0 required';
-?>
+<?php if (!method_exists("ReflectionMethod", "getReturnType")) {
+	print "skip: PHP >= 7.0.0 required";
+} ?>
 --FILE--
 <?php
 class Foo
 {
-    public function bar(string $baz): Bar
-    {
-        return 'test';
-    }
+	public function bar(string $baz): Bar
+	{
+		return "test";
+	}
 }
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . "/../../vendor/autoload.php";
 
-$generator = new PHPUnit_Framework_MockObject_Generator;
+$generator = new PHPUnit_Framework_MockObject_Generator();
 
-$mock = $generator->generate(
-    'Foo',
-    array(),
-    'MockFoo',
-    true,
-    true
-);
+$mock = $generator->generate("Foo", [], "MockFoo", true, true);
 
-print $mock['code'];
+print $mock["code"];
 ?>
 --EXPECTF--
 class MockFoo extends Foo implements PHPUnit_Framework_MockObject_MockObject

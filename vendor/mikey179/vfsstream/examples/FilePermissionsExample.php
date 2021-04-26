@@ -13,17 +13,17 @@ namespace org\bovigo\vfs\example;
  */
 class FilePermissionsExample
 {
-    /**
-     * reads configuration from given config file
-     *
-     * @param  mixed   $config
-     * @param  string  $configFile
-     */
-    public function writeConfig($config, $configFile)
-    {
-        @file_put_contents($configFile, serialize($config));
-    }
+	/**
+	 * reads configuration from given config file
+	 *
+	 * @param  mixed   $config
+	 * @param  string  $configFile
+	 */
+	public function writeConfig($config, $configFile)
+	{
+		@file_put_contents($configFile, serialize($config));
+	}
 
-    // more methods here
+	// more methods here
 }
 ?>

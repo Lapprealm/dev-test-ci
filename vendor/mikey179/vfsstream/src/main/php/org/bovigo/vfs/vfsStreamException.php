@@ -15,6 +15,6 @@ namespace org\bovigo\vfs;
  */
 class vfsStreamException extends \Exception
 {
-    // intentionally empty
+	// intentionally empty
 }
 ?>

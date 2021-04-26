@@ -10,27 +10,26 @@ use DeepCopy\TypeFilter\TypeFilter;
  */
 final class ArrayObjectFilter implements TypeFilter
 {
-    /**
-     * @var DeepCopy
-     */
-    private $copier;
+	/**
+	 * @var DeepCopy
+	 */
+	private $copier;
 
-    public function __construct(DeepCopy $copier)
-    {
-        $this->copier = $copier;
-    }
+	public function __construct(DeepCopy $copier)
+	{
+		$this->copier = $copier;
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function apply($arrayObject)
-    {
-        $clone = clone $arrayObject;
-        foreach ($arrayObject->getArrayCopy() as $k => $v) {
-            $clone->offsetSet($k, $this->copier->copy($v));
-        }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function apply($arrayObject)
+	{
+		$clone = clone $arrayObject;
+		foreach ($arrayObject->getArrayCopy() as $k => $v) {
+			$clone->offsetSet($k, $this->copier->copy($v));
+		}
 
-        return $clone;
-    }
+		return $clone;
+	}
 }
-

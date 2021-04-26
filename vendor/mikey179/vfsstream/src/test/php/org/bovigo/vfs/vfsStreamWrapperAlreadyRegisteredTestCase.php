@@ -13,51 +13,52 @@ namespace org\bovigo\vfs;
  */
 class TestvfsStreamWrapper extends vfsStreamWrapper
 {
-    /**
-     * unregisters vfsStreamWrapper
-     */
-    public static function unregister()
-    {
-        if (in_array(vfsStream::SCHEME, stream_get_wrappers()) === true) {
-            stream_wrapper_unregister(vfsStream::SCHEME);
-        }
+	/**
+	 * unregisters vfsStreamWrapper
+	 */
+	public static function unregister()
+	{
+		if (in_array(vfsStream::SCHEME, stream_get_wrappers()) === true) {
+			stream_wrapper_unregister(vfsStream::SCHEME);
+		}
 
-        self::$registered = false;
-    }
+		self::$registered = false;
+	}
 }
 /**
  * Test for org\bovigo\vfs\vfsStreamWrapper.
  */
-class vfsStreamWrapperAlreadyRegisteredTestCase extends \PHPUnit_Framework_TestCase
+class vfsStreamWrapperAlreadyRegisteredTestCase extends
+	\PHPUnit_Framework_TestCase
 {
-    /**
-     * set up test environment
-     */
-    public function setUp()
-    {
-        TestvfsStreamWrapper::unregister();
-        $mock = $this->getMock('org\\bovigo\\vfs\\vfsStreamWrapper');
-        stream_wrapper_register(vfsStream::SCHEME, get_class($mock));
-    }
+	/**
+	 * set up test environment
+	 */
+	public function setUp()
+	{
+		TestvfsStreamWrapper::unregister();
+		$mock = $this->getMock('org\\bovigo\\vfs\\vfsStreamWrapper');
+		stream_wrapper_register(vfsStream::SCHEME, get_class($mock));
+	}
 
-    /**
-     * clean up test environment
-     */
-    public function tearDown()
-    {
-        TestvfsStreamWrapper::unregister();
-    }
+	/**
+	 * clean up test environment
+	 */
+	public function tearDown()
+	{
+		TestvfsStreamWrapper::unregister();
+	}
 
-    /**
-     * registering the stream wrapper when another stream wrapper is already
-     * registered for the vfs scheme should throw an exception
-     *
-     * @test
-     * @expectedException  org\bovigo\vfs\vfsStreamException
-     */
-    public function registerOverAnotherStreamWrapper()
-    {
-        vfsStreamWrapper::register();
-    }
+	/**
+	 * registering the stream wrapper when another stream wrapper is already
+	 * registered for the vfs scheme should throw an exception
+	 *
+	 * @test
+	 * @expectedException  org\bovigo\vfs\vfsStreamException
+	 */
+	public function registerOverAnotherStreamWrapper()
+	{
+		vfsStreamWrapper::register();
+	}
 }
 ?>

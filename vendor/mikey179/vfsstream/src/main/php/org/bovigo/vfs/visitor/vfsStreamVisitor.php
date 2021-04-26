@@ -19,28 +19,28 @@ use org\bovigo\vfs\vfsStreamFile;
  */
 interface vfsStreamVisitor
 {
-    /**
-     * visit a content and process it
-     *
-     * @param   vfsStreamContent  $content
-     * @return  vfsStreamVisitor
-     */
-    public function visit(vfsStreamContent $content);
+	/**
+	 * visit a content and process it
+	 *
+	 * @param   vfsStreamContent  $content
+	 * @return  vfsStreamVisitor
+	 */
+	public function visit(vfsStreamContent $content);
 
-    /**
-     * visit a file and process it
-     *
-     * @param   vfsStreamFile  $file
-     * @return  vfsStreamVisitor
-     */
-    public function visitFile(vfsStreamFile $file);
+	/**
+	 * visit a file and process it
+	 *
+	 * @param   vfsStreamFile  $file
+	 * @return  vfsStreamVisitor
+	 */
+	public function visitFile(vfsStreamFile $file);
 
-    /**
-     * visit a directory and process it
-     *
-     * @param   vfsStreamDirectory  $dir
-     * @return  vfsStreamVisitor
-     */
-    public function visitDirectory(vfsStreamDirectory $dir);
+	/**
+	 * visit a directory and process it
+	 *
+	 * @param   vfsStreamDirectory  $dir
+	 * @return  vfsStreamVisitor
+	 */
+	public function visitDirectory(vfsStreamDirectory $dir);
 }
 ?>

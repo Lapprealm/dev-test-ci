@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * CodeIgniter Array Helpers
@@ -49,8 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('element'))
-{
+if (!function_exists("element")) {
 	/**
 	 * Element
 	 *
@@ -62,7 +61,7 @@ if ( ! function_exists('element'))
 	 * @param	mixed
 	 * @return	mixed	depends on what the array contains
 	 */
-	function element($item, array $array, $default = NULL)
+	function element($item, array $array, $default = null)
 	{
 		return array_key_exists($item, $array) ? $array[$item] : $default;
 	}
@@ -70,8 +69,7 @@ if ( ! function_exists('element'))
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('random_element'))
-{
+if (!function_exists("random_element")) {
 	/**
 	 * Random Element - Takes an array as input and returns a random element
 	 *
@@ -86,8 +84,7 @@ if ( ! function_exists('random_element'))
 
 // --------------------------------------------------------------------
 
-if ( ! function_exists('elements'))
-{
+if (!function_exists("elements")) {
 	/**
 	 * Elements
 	 *
@@ -99,15 +96,16 @@ if ( ! function_exists('elements'))
 	 * @param	mixed
 	 * @return	mixed	depends on what the array contains
 	 */
-	function elements($items, array $array, $default = NULL)
+	function elements($items, array $array, $default = null)
 	{
-		$return = array();
+		$return = [];
 
-		is_array($items) OR $items = array($items);
+		is_array($items) or ($items = [$items]);
 
-		foreach ($items as $item)
-		{
-			$return[$item] = array_key_exists($item, $array) ? $array[$item] : $default;
+		foreach ($items as $item) {
+			$return[$item] = array_key_exists($item, $array)
+				? $array[$item]
+				: $default;
 		}
 
 		return $return;

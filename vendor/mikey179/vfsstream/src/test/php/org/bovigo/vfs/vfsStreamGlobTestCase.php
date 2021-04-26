@@ -16,14 +16,14 @@ namespace org\bovigo\vfs;
  */
 class vfsStreamGlobTestCase extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @test
-     */
-    public function globDoesNotWorkWithVfsStreamUrls()
-    {
-        $root = vfsStream::setup('example');
-        mkdir(vfsStream::url('example/test/'), 0777, true);
-        $this->assertEmpty(glob(vfsStream::url('example'), GLOB_MARK));
-    }
+	/**
+	 * @test
+	 */
+	public function globDoesNotWorkWithVfsStreamUrls()
+	{
+		$root = vfsStream::setup("example");
+		mkdir(vfsStream::url("example/test/"), 0777, true);
+		$this->assertEmpty(glob(vfsStream::url("example"), GLOB_MARK));
+	}
 }
 ?>

@@ -18,63 +18,70 @@
  */
 class PHPUnit_Util_PHPTest extends PHPUnit_Framework_TestCase
 {
-    public function testShouldNotUseStderrRedirectionByDefault()
-    {
-        $phpMock = $this->getMockForAbstractClass('PHPUnit_Util_PHP');
+	public function testShouldNotUseStderrRedirectionByDefault()
+	{
+		$phpMock = $this->getMockForAbstractClass("PHPUnit_Util_PHP");
 
-        $this->assertFalse($phpMock->useStderrRedirection());
-    }
+		$this->assertFalse($phpMock->useStderrRedirection());
+	}
 
-    public function testShouldDefinedIfUseStderrRedirection()
-    {
-        $phpMock = $this->getMockForAbstractClass('PHPUnit_Util_PHP');
-        $phpMock->setUseStderrRedirection(true);
+	public function testShouldDefinedIfUseStderrRedirection()
+	{
+		$phpMock = $this->getMockForAbstractClass("PHPUnit_Util_PHP");
+		$phpMock->setUseStderrRedirection(true);
 
-        $this->assertTrue($phpMock->useStderrRedirection());
-    }
+		$this->assertTrue($phpMock->useStderrRedirection());
+	}
 
-    public function testShouldDefinedIfDoNotUseStderrRedirection()
-    {
-        $phpMock = $this->getMockForAbstractClass('PHPUnit_Util_PHP');
-        $phpMock->setUseStderrRedirection(false);
+	public function testShouldDefinedIfDoNotUseStderrRedirection()
+	{
+		$phpMock = $this->getMockForAbstractClass("PHPUnit_Util_PHP");
+		$phpMock->setUseStderrRedirection(false);
 
-        $this->assertFalse($phpMock->useStderrRedirection());
-    }
+		$this->assertFalse($phpMock->useStderrRedirection());
+	}
 
-    /**
-     * @expectedException PHPUnit_Framework_Exception
-     * @expectedExceptionMessage Argument #1 (No Value) of PHPUnit_Util_PHP::setUseStderrRedirection() must be a boolean
-     */
-    public function testShouldThrowsExceptionWhenStderrRedirectionVariableIsNotABoolean()
-    {
-        $phpMock = $this->getMockForAbstractClass('PHPUnit_Util_PHP');
-        $phpMock->setUseStderrRedirection(null);
-    }
+	/**
+	 * @expectedException PHPUnit_Framework_Exception
+	 * @expectedExceptionMessage Argument #1 (No Value) of PHPUnit_Util_PHP::setUseStderrRedirection() must be a boolean
+	 */
+	public function testShouldThrowsExceptionWhenStderrRedirectionVariableIsNotABoolean()
+	{
+		$phpMock = $this->getMockForAbstractClass("PHPUnit_Util_PHP");
+		$phpMock->setUseStderrRedirection(null);
+	}
 
-    public function testShouldUseGivenSettingsToCreateCommand()
-    {
-        $phpMock = $this->getMockForAbstractClass('PHPUnit_Util_PHP');
+	public function testShouldUseGivenSettingsToCreateCommand()
+	{
+		$phpMock = $this->getMockForAbstractClass("PHPUnit_Util_PHP");
 
-        $settings = [
-            'allow_url_fopen=1',
-            'auto_append_file=',
-            'display_errors=1',
-        ];
+		$settings = [
+			"allow_url_fopen=1",
+			"auto_append_file=",
+			"display_errors=1",
+		];
 
-        $expectedCommandFormat  = '%s -d allow_url_fopen=1 -d auto_append_file= -d display_errors=1';
-        $actualCommand          = $phpMock->getCommand($settings);
+		$expectedCommandFormat =
+			"%s -d allow_url_fopen=1 -d auto_append_file= -d display_errors=1";
+		$actualCommand = $phpMock->getCommand($settings);
 
-        $this->assertStringMatchesFormat($expectedCommandFormat, $actualCommand);
-    }
+		$this->assertStringMatchesFormat(
+			$expectedCommandFormat,
+			$actualCommand
+		);
+	}
 
-    public function testShouldRedirectStderrToStdoutWhenDefined()
-    {
-        $phpMock = $this->getMockForAbstractClass('PHPUnit_Util_PHP');
-        $phpMock->setUseStderrRedirection(true);
+	public function testShouldRedirectStderrToStdoutWhenDefined()
+	{
+		$phpMock = $this->getMockForAbstractClass("PHPUnit_Util_PHP");
+		$phpMock->setUseStderrRedirection(true);
 
-        $expectedCommandFormat  = '%s 2>&1';
-        $actualCommand          = $phpMock->getCommand([]);
+		$expectedCommandFormat = "%s 2>&1";
+		$actualCommand = $phpMock->getCommand([]);
 
-        $this->assertStringMatchesFormat($expectedCommandFormat, $actualCommand);
-    }
+		$this->assertStringMatchesFormat(
+			$expectedCommandFormat,
+			$actualCommand
+		);
+	}
 }

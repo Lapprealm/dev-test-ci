@@ -35,7 +35,7 @@
  * @since	Version 3.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * PDO IBM DB2 Forge Class
@@ -44,32 +44,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/database/
  */
-class CI_DB_pdo_ibm_forge extends CI_DB_pdo_forge {
-
+class CI_DB_pdo_ibm_forge extends CI_DB_pdo_forge
+{
 	/**
 	 * RENAME TABLE IF statement
 	 *
 	 * @var	string
 	 */
-	protected $_rename_table	= 'RENAME TABLE %s TO %s';
+	protected $_rename_table = "RENAME TABLE %s TO %s";
 
 	/**
 	 * UNSIGNED support
 	 *
 	 * @var	array
 	 */
-	protected $_unsigned		= array(
-		'SMALLINT'	=> 'INTEGER',
-		'INT'		=> 'BIGINT',
-		'INTEGER'	=> 'BIGINT'
-	);
+	protected $_unsigned = [
+		"SMALLINT" => "INTEGER",
+		"INT" => "BIGINT",
+		"INTEGER" => "BIGINT",
+	];
 
 	/**
 	 * DEFAULT value representation in CREATE/ALTER TABLE statements
 	 *
 	 * @var	string
 	 */
-	protected $_default		= FALSE;
+	protected $_default = false;
 
 	// --------------------------------------------------------------------
 
@@ -83,9 +83,8 @@ class CI_DB_pdo_ibm_forge extends CI_DB_pdo_forge {
 	 */
 	protected function _alter_table($alter_type, $table, $field)
 	{
-		if ($alter_type === 'CHANGE')
-		{
-			$alter_type = 'MODIFY';
+		if ($alter_type === "CHANGE") {
+			$alter_type = "MODIFY";
 		}
 
 		return parent::_alter_table($alter_type, $table, $field);
@@ -103,17 +102,17 @@ class CI_DB_pdo_ibm_forge extends CI_DB_pdo_forge {
 	 */
 	protected function _attr_type(&$attributes)
 	{
-		switch (strtoupper($attributes['TYPE']))
-		{
-			case 'TINYINT':
-				$attributes['TYPE'] = 'SMALLINT';
-				$attributes['UNSIGNED'] = FALSE;
+		switch (strtoupper($attributes["TYPE"])) {
+			case "TINYINT":
+				$attributes["TYPE"] = "SMALLINT";
+				$attributes["UNSIGNED"] = false;
 				return;
-			case 'MEDIUMINT':
-				$attributes['TYPE'] = 'INTEGER';
-				$attributes['UNSIGNED'] = FALSE;
+			case "MEDIUMINT":
+				$attributes["TYPE"] = "INTEGER";
+				$attributes["UNSIGNED"] = false;
 				return;
-			default: return;
+			default:
+				return;
 		}
 	}
 
@@ -128,12 +127,11 @@ class CI_DB_pdo_ibm_forge extends CI_DB_pdo_forge {
 	 */
 	protected function _attr_unique(&$attributes, &$field)
 	{
-		if ( ! empty($attributes['UNIQUE']) && $attributes['UNIQUE'] === TRUE)
-		{
-			$field['unique'] = ' UNIQUE';
+		if (!empty($attributes["UNIQUE"]) && $attributes["UNIQUE"] === true) {
+			$field["unique"] = " UNIQUE";
 
 			// UNIQUE must be used with NOT NULL
-			$field['null'] = ' NOT NULL';
+			$field["null"] = " NOT NULL";
 		}
 	}
 
@@ -150,5 +148,4 @@ class CI_DB_pdo_ibm_forge extends CI_DB_pdo_forge {
 	{
 		// Not supported
 	}
-
 }

@@ -15,38 +15,45 @@ use ReflectionException;
  */
 class PropertyTypeMatcher implements Matcher
 {
-    /**
-     * @var string
-     */
-    private $propertyType;
+	/**
+	 * @var string
+	 */
+	private $propertyType;
 
-    /**
-     * @param string $propertyType Property type
-     */
-    public function __construct($propertyType)
-    {
-        $this->propertyType = $propertyType;
-    }
+	/**
+	 * @param string $propertyType Property type
+	 */
+	public function __construct($propertyType)
+	{
+		$this->propertyType = $propertyType;
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function matches($object, $property)
-    {
-        try {
-            $reflectionProperty = ReflectionHelper::getProperty($object, $property);
-        } catch (ReflectionException $exception) {
-            return false;
-        }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function matches($object, $property)
+	{
+		try {
+			$reflectionProperty = ReflectionHelper::getProperty(
+				$object,
+				$property
+			);
+		} catch (ReflectionException $exception) {
+			return false;
+		}
 
-        $reflectionProperty->setAccessible(true);
+		$reflectionProperty->setAccessible(true);
 
-        // Uninitialized properties (for PHP >7.4)
-        if (method_exists($reflectionProperty, 'isInitialized') && !$reflectionProperty->isInitialized($object)) {
-            // null instanceof $this->propertyType
-            return false;
-        }
+		// Uninitialized properties (for PHP >7.4)
+		if (
+			method_exists($reflectionProperty, "isInitialized") &&
+			!$reflectionProperty->isInitialized($object)
+		) {
+			// null instanceof $this->propertyType
+			return false;
+		}
 
-        return $reflectionProperty->getValue($object) instanceof $this->propertyType;
-    }
+		return $reflectionProperty->getValue($object) instanceof
+			$this->propertyType;
+	}
 }

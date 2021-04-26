@@ -1,8 +1,11 @@
 <?php
-class Test {
-	public function methodOne() {
+class Test
+{
+	public function methodOne()
+	{
 		$foo = new class {
-			public function method_in_anonymous_class() {
+			public function method_in_anonymous_class()
+			{
 				return true;
 			}
 		};
@@ -10,7 +13,8 @@ class Test {
 		return $foo->method_in_anonymous_class();
 	}
 
-	public function methodTwo() {
+	public function methodTwo()
+	{
 		return false;
 	}
 }

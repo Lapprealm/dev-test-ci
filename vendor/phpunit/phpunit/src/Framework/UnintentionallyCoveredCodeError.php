@@ -14,6 +14,7 @@
  *
  * @since Class available since Release 4.0.0
  */
-class PHPUnit_Framework_UnintentionallyCoveredCodeError extends PHPUnit_Framework_RiskyTestError
+class PHPUnit_Framework_UnintentionallyCoveredCodeError extends
+	PHPUnit_Framework_RiskyTestError
 {
 }

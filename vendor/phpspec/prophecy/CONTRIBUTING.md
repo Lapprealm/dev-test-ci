@@ -1,5 +1,4 @@
-Contributing
-------------
+## Contributing
 
 Prophecy is an open source, community-driven project. If you'd like to contribute,
 feel free to do this, but remember to follow this few simple rules:
@@ -10,8 +9,7 @@ feel free to do this, but remember to follow this few simple rules:
   it in a future version unintentionally,
 - Commit your code, but do not mess with `CHANGES.md`,
 
-Running tests
--------------
+## Running tests
 
 Make sure that you don't break anything with your changes by running:
 
