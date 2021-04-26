@@ -1,7 +1,7 @@
 <?php
 defined("BASEPATH") or exit("No direct script access allowed");
 
-class TA extends CI_Controller
+class Ta extends CI_Controller
 {
 	public function __construct()
 	{
@@ -34,7 +34,7 @@ class TA extends CI_Controller
 			$this->session->set_flashdata("errors", validation_errors());
 			redirect(base_url("ta"));
 		} else {
-			$this->hmif->insert_item();
+			$this->hmif->insert_ta();
 			redirect(base_url("ta"));
 		}
 	}
