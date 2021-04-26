@@ -17,7 +17,7 @@ class TA extends CI_Controller {
         $this->load->view('templates/footer');   
     }
 
-    public function store()
+    public function store_ta()
     {
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('nim', 'NIM', 'required');

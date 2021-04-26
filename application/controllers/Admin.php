@@ -21,6 +21,11 @@ class Admin extends CI_Controller {
        $this->load->view('templates/footer');
     }
 
+
+
+
+
+
     // Tampung Aspirasi
 
     public function show_ta($id)
@@ -73,7 +78,39 @@ class Admin extends CI_Controller {
        redirect(base_url('admin'));
     }
 
+
+
+
+
+    
     // Struktur Keanggotaan
+
+    public function store_sa()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nim', 'NIM', 'required');
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required');
+        $this->form_validation->set_rules('motto', 'Motto', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->session->set_flashdata('errors', validation_errors());
+            redirect(base_url('ta'));
+        }
+        else
+        {
+           $this->hmif->insert_item();
+           redirect(base_url('ta'));
+        }
+    }
+
+    public function create_sa()
+    {
+        $data['title'] = 'Hearing Informatics';
+        $this->load->view('templates/header', $data);
+        $this->load->view('hmif/admin/sa/create');
+        $this->load->view('templates/footer');   
+    }
 
     public function show_sa($id)
     {
