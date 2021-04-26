@@ -82,10 +82,10 @@ class Admin extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 			$this->session->set_flashdata("errors", validation_errors());
-			redirect(base_url("ta"));
+			redirect(base_url("sa"));
 		} else {
-			$this->hmif->insert_item();
-			redirect(base_url("ta"));
+			$this->hmif->insert_sa();
+			redirect(base_url("sa"));
 		}
 	}
 
