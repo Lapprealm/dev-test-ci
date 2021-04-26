@@ -4,53 +4,46 @@ PHPUnit_Framework_MockObject_Generator::generate('Foo', array(), 'MockFoo', true
 <?php
 trait BaseTrait
 {
-    protected function hello()
-    {
-        return 'hello';
-    }
+	protected function hello()
+	{
+		return "hello";
+	}
 }
 
 trait ChildTrait
 {
-    use BaseTrait
-    {
-        hello as private hi;
-    }
+	use BaseTrait {
+		hello as private hi;
+	}
 
-    protected function hello()
-    {
-        return 'hi';
-    }
+	protected function hello()
+	{
+		return "hi";
+	}
 
-    protected function world()
-    {
-        return $this->hi();
-    }
+	protected function world()
+	{
+		return $this->hi();
+	}
 }
 
 class Foo
 {
-    use ChildTrait;
+	use ChildTrait;
 
-    public function speak()
-    {
-        return $this->world();
-    }
+	public function speak()
+	{
+		return $this->world();
+	}
 }
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . "/../../vendor/autoload.php";
 
-$generator = new PHPUnit_Framework_MockObject_Generator;
+$generator = new PHPUnit_Framework_MockObject_Generator();
 
-$mock = $generator->generate(
-    'Foo',
-    array(),
-    'MockFoo',
-    true,
-    true
-);
+$mock = $generator->generate("Foo", [], "MockFoo", true, true);
 
-print $mock['code'];
+print $mock["code"];
 ?>
 --EXPECTF--
 class MockFoo extends Foo implements PHPUnit_Framework_MockObject_MockObject

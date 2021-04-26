@@ -6,10 +6,10 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 
 ## Workflow
 
-* Fork the project.
-* Make your bug fix or feature addition.
-* Add tests for it. This is important so we don't break it in a future version unintentionally.
-* Send a pull request. Bonus points for topic branches.
+- Fork the project.
+- Make your bug fix or feature addition.
+- Add tests for it. This is important so we don't break it in a future version unintentionally.
+- Send a pull request. Bonus points for topic branches.
 
 Please make sure that you have [set up your user name and email address](http://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) for use with Git. Strings such as `silly nick name <root@localhost>` look really stupid in the commit history of a project.
 
@@ -57,10 +57,9 @@ $ ./phpunit --version
 
 Please use the most specific issue tracker to search for existing tickets and to open new tickets:
 
-* [General problems](https://github.com/sebastianbergmann/phpunit/issues)
-* [Code Coverage](https://github.com/sebastianbergmann/php-code-coverage/issues)
-* [Stub and Mock Objects](https://github.com/sebastianbergmann/phpunit-mock-objects/issues)
-* [DbUnit](https://github.com/sebastianbergmann/dbunit/issues)
-* [Documentation](https://github.com/sebastianbergmann/phpunit-documentation/issues)
-* [Website](https://github.com/sebastianbergmann/phpunit-website/issues)
-
+- [General problems](https://github.com/sebastianbergmann/phpunit/issues)
+- [Code Coverage](https://github.com/sebastianbergmann/php-code-coverage/issues)
+- [Stub and Mock Objects](https://github.com/sebastianbergmann/phpunit-mock-objects/issues)
+- [DbUnit](https://github.com/sebastianbergmann/dbunit/issues)
+- [Documentation](https://github.com/sebastianbergmann/phpunit-documentation/issues)
+- [Website](https://github.com/sebastianbergmann/phpunit-website/issues)

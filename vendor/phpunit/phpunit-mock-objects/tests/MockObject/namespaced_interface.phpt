@@ -1,27 +1,20 @@
 --TEST--
 PHPUnit_Framework_MockObject_Generator::generate('NS\Foo', array(), 'MockFoo', true, true)
 --FILE--
-<?php
-namespace NS;
+<?php namespace NS;
 
 interface Foo
 {
-    public function bar(Foo $foo);
+	public function bar(Foo $foo);
 }
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . "/../../vendor/autoload.php";
 
-$generator = new \PHPUnit_Framework_MockObject_Generator;
+$generator = new \PHPUnit_Framework_MockObject_Generator();
 
-$mock = $generator->generate(
-    'NS\Foo',
-    array(),
-    'MockFoo',
-    true,
-    true
-);
+$mock = $generator->generate("NS\Foo", [], "MockFoo", true, true);
 
-print $mock['code'];
+print $mock["code"];
 ?>
 --EXPECTF--
 class MockFoo implements PHPUnit_Framework_MockObject_MockObject, NS\Foo

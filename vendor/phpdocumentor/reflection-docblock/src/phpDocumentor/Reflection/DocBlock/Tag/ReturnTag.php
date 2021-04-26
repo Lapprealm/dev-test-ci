@@ -24,76 +24,76 @@ use phpDocumentor\Reflection\DocBlock\Type\Collection;
  */
 class ReturnTag extends Tag
 {
-    /** @var string The raw type component. */
-    protected $type = '';
-    
-    /** @var Collection The parsed type component. */
-    protected $types = null;
+	/** @var string The raw type component. */
+	protected $type = "";
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getContent()
-    {
-        if (null === $this->content) {
-            $this->content = "{$this->type} {$this->description}";
-        }
+	/** @var Collection The parsed type component. */
+	protected $types = null;
 
-        return $this->content;
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getContent()
+	{
+		if (null === $this->content) {
+			$this->content = "{$this->type} {$this->description}";
+		}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setContent($content)
-    {
-        parent::setContent($content);
+		return $this->content;
+	}
 
-        $parts = preg_split('/\s+/Su', $this->description, 2);
+	/**
+	 * {@inheritdoc}
+	 */
+	public function setContent($content)
+	{
+		parent::setContent($content);
 
-        // any output is considered a type
-        $this->type = $parts[0];
-        $this->types = null;
+		$parts = preg_split("/\s+/Su", $this->description, 2);
 
-        $this->setDescription(isset($parts[1]) ? $parts[1] : '');
+		// any output is considered a type
+		$this->type = $parts[0];
+		$this->types = null;
 
-        $this->content = $content;
-        return $this;
-    }
+		$this->setDescription(isset($parts[1]) ? $parts[1] : "");
 
-    /**
-     * Returns the unique types of the variable.
-     *
-     * @return string[]
-     */
-    public function getTypes()
-    {
-        return $this->getTypesCollection()->getArrayCopy();
-    }
+		$this->content = $content;
+		return $this;
+	}
 
-    /**
-     * Returns the type section of the variable.
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return (string) $this->getTypesCollection();
-    }
+	/**
+	 * Returns the unique types of the variable.
+	 *
+	 * @return string[]
+	 */
+	public function getTypes()
+	{
+		return $this->getTypesCollection()->getArrayCopy();
+	}
 
-    /**
-     * Returns the type collection.
-     * 
-     * @return void
-     */
-    protected function getTypesCollection()
-    {
-        if (null === $this->types) {
-            $this->types = new Collection(
-                array($this->type),
-                $this->docblock ? $this->docblock->getContext() : null
-            );
-        }
-        return $this->types;
-    }
+	/**
+	 * Returns the type section of the variable.
+	 *
+	 * @return string
+	 */
+	public function getType()
+	{
+		return (string) $this->getTypesCollection();
+	}
+
+	/**
+	 * Returns the type collection.
+	 *
+	 * @return void
+	 */
+	protected function getTypesCollection()
+	{
+		if (null === $this->types) {
+			$this->types = new Collection(
+				[$this->type],
+				$this->docblock ? $this->docblock->getContext() : null
+			);
+		}
+		return $this->types;
+	}
 }

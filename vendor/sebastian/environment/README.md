@@ -21,7 +21,7 @@ To add Environment as a local, per-project dependency to your project, simply ad
 <?php
 use SebastianBergmann\Environment\Runtime;
 
-$runtime = new Runtime;
+$runtime = new Runtime();
 
 var_dump($runtime->getNameWithVersion());
 var_dump($runtime->getName());
@@ -69,4 +69,3 @@ var_dump($runtime->canCollectCodeCoverage());
     bool(false)
     bool(false)
     bool(true)
-

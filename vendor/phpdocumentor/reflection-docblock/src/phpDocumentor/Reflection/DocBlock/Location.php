@@ -21,56 +21,54 @@ namespace phpDocumentor\Reflection\DocBlock;
  */
 class Location
 {
-    /** @var int Line where the DocBlock text starts. */
-    protected $lineNumber = 0;
+	/** @var int Line where the DocBlock text starts. */
+	protected $lineNumber = 0;
 
-    /** @var int Column where the DocBlock text starts. */
-    protected $columnNumber = 0;
-    
-    public function __construct(
-        $lineNumber = 0,
-        $columnNumber = 0
-    ) {
-        $this->setLineNumber($lineNumber)->setColumnNumber($columnNumber);
-    }
+	/** @var int Column where the DocBlock text starts. */
+	protected $columnNumber = 0;
 
-    /**
-     * @return int Line where the DocBlock text starts.
-     */
-    public function getLineNumber()
-    {
-        return $this->lineNumber;
-    }
+	public function __construct($lineNumber = 0, $columnNumber = 0)
+	{
+		$this->setLineNumber($lineNumber)->setColumnNumber($columnNumber);
+	}
 
-    /**
-     * 
-     * @param type $lineNumber
-     * @return $this
-     */
-    public function setLineNumber($lineNumber)
-    {
-        $this->lineNumber = (int)$lineNumber;
+	/**
+	 * @return int Line where the DocBlock text starts.
+	 */
+	public function getLineNumber()
+	{
+		return $this->lineNumber;
+	}
 
-        return $this;
-    }
+	/**
+	 *
+	 * @param type $lineNumber
+	 * @return $this
+	 */
+	public function setLineNumber($lineNumber)
+	{
+		$this->lineNumber = (int) $lineNumber;
 
-    /**
-     * @return int Column where the DocBlock text starts.
-     */
-    public function getColumnNumber()
-    {
-        return $this->columnNumber;
-    }
+		return $this;
+	}
 
-    /**
-     * 
-     * @param int $columnNumber
-     * @return $this
-     */
-    public function setColumnNumber($columnNumber)
-    {
-        $this->columnNumber = (int)$columnNumber;
+	/**
+	 * @return int Column where the DocBlock text starts.
+	 */
+	public function getColumnNumber()
+	{
+		return $this->columnNumber;
+	}
 
-        return $this;
-    }
+	/**
+	 *
+	 * @param int $columnNumber
+	 * @return $this
+	 */
+	public function setColumnNumber($columnNumber)
+	{
+		$this->columnNumber = (int) $columnNumber;
+
+		return $this;
+	}
 }

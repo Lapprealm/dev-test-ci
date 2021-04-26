@@ -2,12 +2,13 @@
 phpunit --verbose ClonedDependencyTest ../_files/ClonedDependencyTest.php
 --FILE--
 <?php
-$_SERVER['argv'][1] = '--no-configuration';
-$_SERVER['argv'][2] = '--verbose';
-$_SERVER['argv'][3] = 'ClonedDependencyTest';
-$_SERVER['argv'][4] = dirname(dirname(__FILE__)) . '/_files/ClonedDependencyTest.php';
+$_SERVER["argv"][1] = "--no-configuration";
+$_SERVER["argv"][2] = "--verbose";
+$_SERVER["argv"][3] = "ClonedDependencyTest";
+$_SERVER["argv"][4] =
+	dirname(dirname(__FILE__)) . "/_files/ClonedDependencyTest.php";
 
-require __DIR__ . '/../bootstrap.php';
+require __DIR__ . "/../bootstrap.php";
 PHPUnit_TextUI_Command::main();
 ?>
 --EXPECTF--

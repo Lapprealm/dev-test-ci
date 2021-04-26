@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * Benchmark Class
@@ -49,14 +49,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/libraries/benchmark.html
  */
-class CI_Benchmark {
-
+class CI_Benchmark
+{
 	/**
 	 * List of all benchmark markers
 	 *
 	 * @var	array
 	 */
-	public $marker = array();
+	public $marker = [];
 
 	/**
 	 * Set a benchmark marker
@@ -69,7 +69,7 @@ class CI_Benchmark {
 	 */
 	public function mark($name)
 	{
-		$this->marker[$name] = microtime(TRUE);
+		$this->marker[$name] = microtime(true);
 	}
 
 	// --------------------------------------------------------------------
@@ -92,24 +92,24 @@ class CI_Benchmark {
 	 *			an '{elapsed_string}' if $point1 is empty
 	 *			or an empty string if $point1 is not found.
 	 */
-	public function elapsed_time($point1 = '', $point2 = '', $decimals = 4)
+	public function elapsed_time($point1 = "", $point2 = "", $decimals = 4)
 	{
-		if ($point1 === '')
-		{
-			return '{elapsed_time}';
+		if ($point1 === "") {
+			return "{elapsed_time}";
 		}
 
-		if ( ! isset($this->marker[$point1]))
-		{
-			return '';
+		if (!isset($this->marker[$point1])) {
+			return "";
 		}
 
-		if ( ! isset($this->marker[$point2]))
-		{
-			$this->marker[$point2] = microtime(TRUE);
+		if (!isset($this->marker[$point2])) {
+			$this->marker[$point2] = microtime(true);
 		}
 
-		return number_format($this->marker[$point2] - $this->marker[$point1], $decimals);
+		return number_format(
+			$this->marker[$point2] - $this->marker[$point1],
+			$decimals
+		);
 	}
 
 	// --------------------------------------------------------------------
@@ -127,7 +127,6 @@ class CI_Benchmark {
 	 */
 	public function memory_usage()
 	{
-		return '{memory_usage}';
+		return "{memory_usage}";
 	}
-
 }

@@ -13,29 +13,29 @@ enough to be used inside any testing framework out there with minimal effort.
 
 class UserTest extends PHPUnit_Framework_TestCase
 {
-    private $prophet;
+	private $prophet;
 
-    public function testPasswordHashing()
-    {
-        $hasher = $this->prophet->prophesize('App\Security\Hasher');
-        $user   = new App\Entity\User($hasher->reveal());
+	public function testPasswordHashing()
+	{
+		$hasher = $this->prophet->prophesize("App\Security\Hasher");
+		$user = new App\Entity\User($hasher->reveal());
 
-        $hasher->generateHash($user, 'qwerty')->willReturn('hashed_pass');
+		$hasher->generateHash($user, "qwerty")->willReturn("hashed_pass");
 
-        $user->setPassword('qwerty');
+		$user->setPassword("qwerty");
 
-        $this->assertEquals('hashed_pass', $user->getPassword());
-    }
+		$this->assertEquals("hashed_pass", $user->getPassword());
+	}
 
-    protected function setup()
-    {
-        $this->prophet = new \Prophecy\Prophet;
-    }
+	protected function setup()
+	{
+		$this->prophet = new \Prophecy\Prophet();
+	}
 
-    protected function tearDown()
-    {
-        $this->prophet->checkPredictions();
-    }
+	protected function tearDown()
+	{
+		$this->prophet->checkPredictions();
+	}
 }
 ```
 
@@ -51,9 +51,9 @@ First, add Prophecy to the list of dependencies inside your `composer.json`:
 
 ```json
 {
-    "require-dev": {
-        "phpspec/prophecy": "~1.0"
-    }
+	"require-dev": {
+		"phpspec/prophecy": "~1.0"
+	}
 }
 ```
 
@@ -76,10 +76,10 @@ behavior of objects with very limited knowledge about them. But as with any othe
 those object prophecies can't create themselves - there should be a Prophet:
 
 ```php
-$prophet = new Prophecy\Prophet;
+$prophet = new Prophecy\Prophet();
 ```
 
-The Prophet creates prophecies by *prophesizing* them:
+The Prophet creates prophecies by _prophesizing_ them:
 
 ```php
 $prophecy = $prophet->prophesize();
@@ -91,8 +91,8 @@ in the near future. But first, you need to specify which object you're talking a
 right?
 
 ```php
-$prophecy->willExtend('stdClass');
-$prophecy->willImplement('SessionHandlerInterface');
+$prophecy->willExtend("stdClass");
+$prophecy->willImplement("SessionHandlerInterface");
 ```
 
 There are 2 interesting calls - `willExtend` and `willImplement`. The first one tells
@@ -103,7 +103,7 @@ interfaces, but extend only one parent class.
 ### Dummies
 
 Ok, now we have our object prophecy. What can we do with it? First of all, we can get
-our object *dummy* by revealing its prophecy:
+our object _dummy_ by revealing its prophecy:
 
 ```php
 $dummy = $prophecy->reveal();
@@ -125,7 +125,7 @@ prophecy.
 
 Ok, now we know how to create basic prophecies and reveal dummies from them. That's
 awesome if we don't care about our _doubles_ (objects that reflect originals)
-interactions. If we do, we need to use *stubs* or *mocks*.
+interactions. If we do, we need to use _stubs_ or _mocks_.
 
 A stub is an object double, which doesn't have any expectations about the object behavior,
 but when put in specific environment, behaves in specific way. Ok, I know, it's cryptic,
@@ -133,7 +133,7 @@ but bear with me for a minute. Simply put, a stub is a dummy, which depending on
 method signature does different things (has logic). To create stubs in Prophecy:
 
 ```php
-$prophecy->read('123')->willReturn('value');
+$prophecy->read("123")->willReturn("value");
 ```
 
 Oh wow. We've just made an arbitrary call on the object prophecy? Yes, we did. And this
@@ -149,7 +149,7 @@ As a matter of fact, the call that we made earlier (`willReturn('value')`) is a 
 shortcut to:
 
 ```php
-$prophecy->read('123')->will(new Prophecy\Promise\ReturnPromise(array('value')));
+$prophecy->read("123")->will(new Prophecy\Promise\ReturnPromise(["value"]));
 ```
 
 This promise will cause any call to our double's `read()` method with exactly one
@@ -170,9 +170,9 @@ Prophecy enforces same method prophecies and, as a consequence, same promises an
 predictions for the same method calls with the same arguments. This means:
 
 ```php
-$methodProphecy1 = $prophecy->read('123');
-$methodProphecy2 = $prophecy->read('123');
-$methodProphecy3 = $prophecy->read('321');
+$methodProphecy1 = $prophecy->read("123");
+$methodProphecy2 = $prophecy->read("123");
+$methodProphecy3 = $prophecy->read("321");
 
 $methodProphecy1 === $methodProphecy2;
 $methodProphecy1 !== $methodProphecy3;
@@ -187,18 +187,18 @@ you'll use promises for that:
 $user->getName()->willReturn(null);
 
 // For PHP 5.4
-$user->setName('everzet')->will(function () {
-    $this->getName()->willReturn('everzet');
+$user->setName("everzet")->will(function () {
+	$this->getName()->willReturn("everzet");
 });
 
 // For PHP 5.3
-$user->setName('everzet')->will(function ($args, $user) {
-    $user->getName()->willReturn('everzet');
+$user->setName("everzet")->will(function ($args, $user) {
+	$user->getName()->willReturn("everzet");
 });
 
 // Or
-$user->setName('everzet')->will(function ($args) use ($user) {
-    $user->getName()->willReturn('everzet');
+$user->setName("everzet")->will(function ($args) use ($user) {
+	$user->getName()->willReturn("everzet");
 });
 ```
 
@@ -214,11 +214,11 @@ actually is.
 
 You see, even if method arguments used during method prophecy creation look
 like simple method arguments, in reality they are not. They are argument token
-wildcards.  As a matter of fact, `->setName('everzet')` looks like a simple call just
+wildcards. As a matter of fact, `->setName('everzet')` looks like a simple call just
 because Prophecy automatically transforms it under the hood into:
 
 ```php
-$user->setName(new Prophecy\Argument\Token\ExactValueToken('everzet'));
+$user->setName(new Prophecy\Argument\Token\ExactValueToken("everzet"));
 ```
 
 Those argument tokens are simple PHP classes, that implement
@@ -229,7 +229,7 @@ shortcut class `Prophecy\Argument`, which you can use to create tokens like that
 ```php
 use Prophecy\Argument;
 
-$user->setName(Argument::exact('everzet'));
+$user->setName(Argument::exact("everzet"));
 ```
 
 `ExactValueToken` is not very useful in our case as it forced us to hardcode the username.
@@ -256,18 +256,18 @@ use Prophecy\Argument;
 $user->getName()->willReturn(null);
 
 // For PHP 5.4
-$user->setName(Argument::type('string'))->will(function ($args) {
-    $this->getName()->willReturn($args[0]);
+$user->setName(Argument::type("string"))->will(function ($args) {
+	$this->getName()->willReturn($args[0]);
 });
 
 // For PHP 5.3
-$user->setName(Argument::type('string'))->will(function ($args, $user) {
-    $user->getName()->willReturn($args[0]);
+$user->setName(Argument::type("string"))->will(function ($args, $user) {
+	$user->getName()->willReturn($args[0]);
 });
 
 // Or
-$user->setName(Argument::type('string'))->will(function ($args) use ($user) {
-    $user->getName()->willReturn($args[0]);
+$user->setName(Argument::type("string"))->will(function ($args) use ($user) {
+	$user->getName()->willReturn($args[0]);
 });
 ```
 
@@ -283,22 +283,21 @@ use Prophecy\Argument;
 $user->getName()->willReturn(null);
 
 // For PHP 5.4
-$user->setName(Argument::type('string'))->will(function ($args) {
-    $this->getName()->willReturn($args[0]);
+$user->setName(Argument::type("string"))->will(function ($args) {
+	$this->getName()->willReturn($args[0]);
 });
 
 // For PHP 5.3
-$user->setName(Argument::type('string'))->will(function ($args, $user) {
-    $user->getName()->willReturn($args[0]);
+$user->setName(Argument::type("string"))->will(function ($args, $user) {
+	$user->getName()->willReturn($args[0]);
 });
 
 // Or
-$user->setName(Argument::type('string'))->will(function ($args) use ($user) {
-    $user->getName()->willReturn($args[0]);
+$user->setName(Argument::type("string"))->will(function ($args) use ($user) {
+	$user->getName()->willReturn($args[0]);
 });
 
-$user->setName(Argument::any())->will(function () {
-});
+$user->setName(Argument::any())->will(function () {});
 ```
 
 Nothing. Your stub will continue behaving the way it did before. That's because of how
@@ -320,7 +319,7 @@ $stub = $prophecy->reveal();
 
 As you might see, the only difference between how we get dummies and stubs is that with
 stubs we describe every object conversation instead of just agreeing with `null` returns
-(object being *dummy*). As a matter of fact, after you define your first promise
+(object being _dummy_). As a matter of fact, after you define your first promise
 (method call), Prophecy will force you to define all the communications - it throws
 the `UnexpectedCallException` for any call you didn't describe with object prophecy before
 calling it on a stub.
@@ -330,7 +329,7 @@ calling it on a stub.
 Now we know how to define doubles without behavior (dummies) and doubles with behavior, but
 no expectations (stubs). What's left is doubles for which we have some expectations. These
 are called mocks and in Prophecy they look almost exactly the same as stubs, except that
-they define *predictions* instead of *promises* on method prophecies:
+they define _predictions_ instead of _promises_ on method prophecies:
 
 ```php
 $entityManager->flush()->shouldBeCalled();
@@ -380,7 +379,7 @@ you don't need to record predictions in order to check them. You can also do it
 manually by using the `MethodProphecy::shouldHave(PredictionInterface $prediction)` method:
 
 ```php
-$em = $prophet->prophesize('Doctrine\ORM\EntityManager');
+$em = $prophet->prophesize("Doctrine\ORM\EntityManager");
 
 $controller->createUser($em->reveal());
 

@@ -23,39 +23,39 @@ use phpDocumentor\Reflection\DocBlock\Tag;
  */
 class SourceTag extends Tag
 {
-    /**
-     * @var int The starting line, relative to the structural element's
-     *     location.
-     */
-    protected $startingLine = 1;
+	/**
+	 * @var int The starting line, relative to the structural element's
+	 *     location.
+	 */
+	protected $startingLine = 1;
 
-    /** 
-     * @var int|null The number of lines, relative to the starting line. NULL
-     *     means "to the end".
-     */
-    protected $lineCount = null;
+	/**
+	 * @var int|null The number of lines, relative to the starting line. NULL
+	 *     means "to the end".
+	 */
+	protected $lineCount = null;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getContent()
-    {
-        if (null === $this->content) {
-            $this->content
-                = "{$this->startingLine} {$this->lineCount} {$this->description}";
-        }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getContent()
+	{
+		if (null === $this->content) {
+			$this->content = "{$this->startingLine} {$this->lineCount} {$this->description}";
+		}
 
-        return $this->content;
-    }
+		return $this->content;
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setContent($content)
-    {
-        parent::setContent($content);
-        if (preg_match(
-            '/^
+	/**
+	 * {@inheritdoc}
+	 */
+	public function setContent($content)
+	{
+		parent::setContent($content);
+		if (
+			preg_match(
+				'/^
                 # Starting line
                 ([1-9]\d*)
                 \s*
@@ -67,71 +67,72 @@ class SourceTag extends Tag
                 # Description
                 (.*)
             $/sux',
-            $this->description,
-            $matches
-        )) {
-            $this->startingLine = (int)$matches[1];
-            if (isset($matches[2]) && '' !== $matches[2]) {
-                $this->lineCount = (int)$matches[2];
-            }
-            $this->setDescription($matches[3]);
-            $this->content = $content;
-        }
+				$this->description,
+				$matches
+			)
+		) {
+			$this->startingLine = (int) $matches[1];
+			if (isset($matches[2]) && "" !== $matches[2]) {
+				$this->lineCount = (int) $matches[2];
+			}
+			$this->setDescription($matches[3]);
+			$this->content = $content;
+		}
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Gets the starting line.
-     *
-     * @return int The starting line, relative to the structural element's
-     *     location.
-     */
-    public function getStartingLine()
-    {
-        return $this->startingLine;
-    }
+	/**
+	 * Gets the starting line.
+	 *
+	 * @return int The starting line, relative to the structural element's
+	 *     location.
+	 */
+	public function getStartingLine()
+	{
+		return $this->startingLine;
+	}
 
-    /**
-     * Sets the starting line.
-     * 
-     * @param int $startingLine The new starting line, relative to the
-     *     structural element's location.
-     * 
-     * @return $this
-     */
-    public function setStartingLine($startingLine)
-    {
-        $this->startingLine = $startingLine;
+	/**
+	 * Sets the starting line.
+	 *
+	 * @param int $startingLine The new starting line, relative to the
+	 *     structural element's location.
+	 *
+	 * @return $this
+	 */
+	public function setStartingLine($startingLine)
+	{
+		$this->startingLine = $startingLine;
 
-        $this->content = null;
-        return $this;
-    }
+		$this->content = null;
+		return $this;
+	}
 
-    /**
-     * Returns the number of lines.
-     *
-     * @return int|null The number of lines, relative to the starting line. NULL
-     *     means "to the end".
-     */
-    public function getLineCount()
-    {
-        return $this->lineCount;
-    }
+	/**
+	 * Returns the number of lines.
+	 *
+	 * @return int|null The number of lines, relative to the starting line. NULL
+	 *     means "to the end".
+	 */
+	public function getLineCount()
+	{
+		return $this->lineCount;
+	}
 
-    /**
-     * Sets the number of lines.
-     * 
-     * @param int|null $lineCount The new number of lines, relative to the
-     *     starting line. NULL means "to the end".
-     * 
-     * @return $this
-     */
-    public function setLineCount($lineCount)
-    {
-        $this->lineCount = $lineCount;
+	/**
+	 * Sets the number of lines.
+	 *
+	 * @param int|null $lineCount The new number of lines, relative to the
+	 *     starting line. NULL means "to the end".
+	 *
+	 * @return $this
+	 */
+	public function setLineCount($lineCount)
+	{
+		$this->lineCount = $lineCount;
 
-        $this->content = null;
-        return $this;
-    }
+		$this->content = null;
+		return $this;
+	}
 }

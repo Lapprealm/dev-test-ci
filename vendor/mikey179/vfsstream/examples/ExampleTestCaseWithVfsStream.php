@@ -9,7 +9,7 @@
  */
 namespace org\bovigo\vfs\example;
 use org\bovigo\vfs\vfsStream;
-require_once 'Example.php';
+require_once "Example.php";
 /**
  * Test case for class Example.
  *
@@ -18,30 +18,30 @@ require_once 'Example.php';
  */
 class ExampleTestCaseWithVfsStream extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * root directory
-     *
-     * @type  vfsStreamDirectory
-     */
-    protected $root;
+	/**
+	 * root directory
+	 *
+	 * @type  vfsStreamDirectory
+	 */
+	protected $root;
 
-    /**
-     * set up test environmemt
-     */
-    public function setUp()
-    {
-        $this->root = vfsStream::setup('exampleDir');
-    }
+	/**
+	 * set up test environmemt
+	 */
+	public function setUp()
+	{
+		$this->root = vfsStream::setup("exampleDir");
+	}
 
-    /**
-     * @test
-     */
-    public function directoryIsCreated()
-    {
-        $example = new Example('id');
-        $this->assertFalse($this->root->hasChild('id'));
-        $example->setDirectory(vfsStream::url('exampleDir'));
-        $this->assertTrue($this->root->hasChild('id'));
-    }
+	/**
+	 * @test
+	 */
+	public function directoryIsCreated()
+	{
+		$example = new Example("id");
+		$this->assertFalse($this->root->hasChild("id"));
+		$example->setDirectory(vfsStream::url("exampleDir"));
+		$this->assertTrue($this->root->hasChild("id"));
+	}
 }
 ?>

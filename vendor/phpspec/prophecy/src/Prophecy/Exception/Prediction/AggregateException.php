@@ -13,38 +13,39 @@ namespace Prophecy\Exception\Prediction;
 
 use Prophecy\Prophecy\ObjectProphecy;
 
-class AggregateException extends \RuntimeException implements PredictionException
+class AggregateException extends \RuntimeException implements
+	PredictionException
 {
-    private $exceptions = array();
-    private $objectProphecy;
+	private $exceptions = [];
+	private $objectProphecy;
 
-    public function append(PredictionException $exception)
-    {
-        $message = $exception->getMessage();
-        $message = '  '.strtr($message, array("\n" => "\n  "))."\n";
+	public function append(PredictionException $exception)
+	{
+		$message = $exception->getMessage();
+		$message = "  " . strtr($message, ["\n" => "\n  "]) . "\n";
 
-        $this->message      = rtrim($this->message.$message);
-        $this->exceptions[] = $exception;
-    }
+		$this->message = rtrim($this->message . $message);
+		$this->exceptions[] = $exception;
+	}
 
-    /**
-     * @return PredictionException[]
-     */
-    public function getExceptions()
-    {
-        return $this->exceptions;
-    }
+	/**
+	 * @return PredictionException[]
+	 */
+	public function getExceptions()
+	{
+		return $this->exceptions;
+	}
 
-    public function setObjectProphecy(ObjectProphecy $objectProphecy)
-    {
-        $this->objectProphecy = $objectProphecy;
-    }
+	public function setObjectProphecy(ObjectProphecy $objectProphecy)
+	{
+		$this->objectProphecy = $objectProphecy;
+	}
 
-    /**
-     * @return ObjectProphecy
-     */
-    public function getObjectProphecy()
-    {
-        return $this->objectProphecy;
-    }
+	/**
+	 * @return ObjectProphecy
+	 */
+	public function getObjectProphecy()
+	{
+		return $this->objectProphecy;
+	}
 }

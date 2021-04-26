@@ -23,11 +23,11 @@ use phpDocumentor\Reflection\DocBlock\Tag;
  */
 class VersionTag extends Tag
 {
-    /**
-     * PCRE regular expression matching a version vector.
-     * Assumes the "x" modifier.
-     */
-    const REGEX_VECTOR = '(?:
+	/**
+	 * PCRE regular expression matching a version vector.
+	 * Assumes the "x" modifier.
+	 */
+	const REGEX_VECTOR = '(?:
         # Normal release vectors.
         \d\S*
         |
@@ -39,70 +39,76 @@ class VersionTag extends Tag
         [^\s\:]+\:\s*\$[^\$]+\$
     )';
 
-    /** @var string The version vector. */
-    protected $version = '';
-    
-    public function getContent()
-    {
-        if (null === $this->content) {
-            $this->content = "{$this->version} {$this->description}";
-        }
+	/** @var string The version vector. */
+	protected $version = "";
 
-        return $this->content;
-    }
+	public function getContent()
+	{
+		if (null === $this->content) {
+			$this->content = "{$this->version} {$this->description}";
+		}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setContent($content)
-    {
-        parent::setContent($content);
+		return $this->content;
+	}
 
-        if (preg_match(
-            '/^
+	/**
+	 * {@inheritdoc}
+	 */
+	public function setContent($content)
+	{
+		parent::setContent($content);
+
+		if (
+			preg_match(
+				'/^
                 # The version vector
-                (' . self::REGEX_VECTOR . ')
+                (' .
+					self::REGEX_VECTOR .
+					')
                 \s*
                 # The description
                 (.+)?
             $/sux',
-            $this->description,
-            $matches
-        )) {
-            $this->version = $matches[1];
-            $this->setDescription(isset($matches[2]) ? $matches[2] : '');
-            $this->content = $content;
-        }
+				$this->description,
+				$matches
+			)
+		) {
+			$this->version = $matches[1];
+			$this->setDescription(isset($matches[2]) ? $matches[2] : "");
+			$this->content = $content;
+		}
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Gets the version section of the tag.
-     *
-     * @return string The version section of the tag.
-     */
-    public function getVersion()
-    {
-        return $this->version;
-    }
-    
-    /**
-     * Sets the version section of the tag.
-     * 
-     * @param string $version The new version section of the tag.
-     *     An invalid value will set an empty string.
-     * 
-     * @return $this
-     */
-    public function setVersion($version)
-    {
-        $this->version
-            = preg_match('/^' . self::REGEX_VECTOR . '$/ux', $version)
-            ? $version
-            : '';
+	/**
+	 * Gets the version section of the tag.
+	 *
+	 * @return string The version section of the tag.
+	 */
+	public function getVersion()
+	{
+		return $this->version;
+	}
 
-        $this->content = null;
-        return $this;
-    }
+	/**
+	 * Sets the version section of the tag.
+	 *
+	 * @param string $version The new version section of the tag.
+	 *     An invalid value will set an empty string.
+	 *
+	 * @return $this
+	 */
+	public function setVersion($version)
+	{
+		$this->version = preg_match(
+			"/^" . self::REGEX_VECTOR . '$/ux',
+			$version
+		)
+			? $version
+			: "";
+
+		$this->content = null;
+		return $this;
+	}
 }

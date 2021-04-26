@@ -16,25 +16,29 @@ use Symfony\Component\Yaml\Yaml;
 
 class YamlTest extends TestCase
 {
-    public function testParseAndDump()
-    {
-        $data = ['lorem' => 'ipsum', 'dolor' => 'sit'];
-        $yml = Yaml::dump($data);
-        $parsed = Yaml::parse($yml);
-        $this->assertEquals($data, $parsed);
-    }
+	public function testParseAndDump()
+	{
+		$data = ["lorem" => "ipsum", "dolor" => "sit"];
+		$yml = Yaml::dump($data);
+		$parsed = Yaml::parse($yml);
+		$this->assertEquals($data, $parsed);
+	}
 
-    public function testZeroIndentationThrowsException()
-    {
-        $this->expectException('InvalidArgumentException');
-        $this->expectExceptionMessage('The indentation must be greater than zero');
-        Yaml::dump(['lorem' => 'ipsum', 'dolor' => 'sit'], 2, 0);
-    }
+	public function testZeroIndentationThrowsException()
+	{
+		$this->expectException("InvalidArgumentException");
+		$this->expectExceptionMessage(
+			"The indentation must be greater than zero"
+		);
+		Yaml::dump(["lorem" => "ipsum", "dolor" => "sit"], 2, 0);
+	}
 
-    public function testNegativeIndentationThrowsException()
-    {
-        $this->expectException('InvalidArgumentException');
-        $this->expectExceptionMessage('The indentation must be greater than zero');
-        Yaml::dump(['lorem' => 'ipsum', 'dolor' => 'sit'], 2, -4);
-    }
+	public function testNegativeIndentationThrowsException()
+	{
+		$this->expectException("InvalidArgumentException");
+		$this->expectExceptionMessage(
+			"The indentation must be greater than zero"
+		);
+		Yaml::dump(["lorem" => "ipsum", "dolor" => "sit"], 2, -4);
+	}
 }

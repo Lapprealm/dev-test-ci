@@ -1,20 +1,20 @@
 --TEST--
 GH-1351: Test result does not serialize test class in process isolation
 --SKIPIF--
-<?php
-if (!extension_loaded('pdo') || !in_array('sqlite', PDO::getAvailableDrivers())) {
-    print 'skip: PDO_SQLITE is required';
-}
-?>
+<?php if (
+	!extension_loaded("pdo") ||
+	!in_array("sqlite", PDO::getAvailableDrivers())
+) {
+	print "skip: PDO_SQLITE is required";
+} ?>
 --FILE--
 <?php
+$_SERVER["argv"][1] = "--no-configuration";
+$_SERVER["argv"][2] = "--process-isolation";
+$_SERVER["argv"][3] = "Issue1351Test";
+$_SERVER["argv"][4] = __DIR__ . "/1351/Issue1351Test.php";
 
-$_SERVER['argv'][1] = '--no-configuration';
-$_SERVER['argv'][2] = '--process-isolation';
-$_SERVER['argv'][3] = 'Issue1351Test';
-$_SERVER['argv'][4] = __DIR__ . '/1351/Issue1351Test.php';
-
-require __DIR__ . '/../../bootstrap.php';
+require __DIR__ . "/../../bootstrap.php";
 PHPUnit_TextUI_Command::main();
 ?>
 --EXPECTF--

@@ -35,7 +35,7 @@
  * @since	Version 3.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * SQLite3 Database Adapter Class
@@ -50,14 +50,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		Andrey Andreev
  * @link		https://codeigniter.com/user_guide/database/
  */
-class CI_DB_sqlite3_driver extends CI_DB {
-
+class CI_DB_sqlite3_driver extends CI_DB
+{
 	/**
 	 * Database driver
 	 *
 	 * @var	string
 	 */
-	public $dbdriver = 'sqlite3';
+	public $dbdriver = "sqlite3";
 
 	// --------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 *
 	 * @var	array
 	 */
-	protected $_random_keyword = array('RANDOM()', 'RANDOM()');
+	protected $_random_keyword = ["RANDOM()", "RANDOM()"];
 
 	// --------------------------------------------------------------------
 
@@ -76,22 +76,25 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 * @param	bool	$persistent
 	 * @return	SQLite3
 	 */
-	public function db_connect($persistent = FALSE)
+	public function db_connect($persistent = false)
 	{
-		if ($persistent)
-		{
-			log_message('debug', 'SQLite3 doesn\'t support persistent connections');
+		if ($persistent) {
+			log_message(
+				"debug",
+				'SQLite3 doesn\'t support persistent connections'
+			);
 		}
 
-		try
-		{
-			return ( ! $this->password)
+		try {
+			return !$this->password
 				? new SQLite3($this->database)
-				: new SQLite3($this->database, SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE, $this->password);
-		}
-		catch (Exception $e)
-		{
-			return FALSE;
+				: new SQLite3(
+					$this->database,
+					SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE,
+					$this->password
+				);
+		} catch (Exception $e) {
+			return false;
 		}
 	}
 
@@ -104,13 +107,12 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 */
 	public function version()
 	{
-		if (isset($this->data_cache['version']))
-		{
-			return $this->data_cache['version'];
+		if (isset($this->data_cache["version"])) {
+			return $this->data_cache["version"];
 		}
 
 		$version = SQLite3::version();
-		return $this->data_cache['version'] = $version['versionString'];
+		return $this->data_cache["version"] = $version["versionString"];
 	}
 
 	// --------------------------------------------------------------------
@@ -138,7 +140,7 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 */
 	protected function _trans_begin()
 	{
-		return $this->conn_id->exec('BEGIN TRANSACTION');
+		return $this->conn_id->exec("BEGIN TRANSACTION");
 	}
 
 	// --------------------------------------------------------------------
@@ -150,7 +152,7 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 */
 	protected function _trans_commit()
 	{
-		return $this->conn_id->exec('END TRANSACTION');
+		return $this->conn_id->exec("END TRANSACTION");
 	}
 
 	// --------------------------------------------------------------------
@@ -162,7 +164,7 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 */
 	protected function _trans_rollback()
 	{
-		return $this->conn_id->exec('ROLLBACK');
+		return $this->conn_id->exec("ROLLBACK");
 	}
 
 	// --------------------------------------------------------------------
@@ -212,12 +214,15 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 * @param	bool	$prefix_limit
 	 * @return	string
 	 */
-	protected function _list_tables($prefix_limit = FALSE)
+	protected function _list_tables($prefix_limit = false)
 	{
-		return 'SELECT "NAME" FROM "SQLITE_MASTER" WHERE "TYPE" = \'table\''
-			.(($prefix_limit !== FALSE && $this->dbprefix != '')
-				? ' AND "NAME" LIKE \''.$this->escape_like_str($this->dbprefix).'%\' '.sprintf($this->_like_escape_str, $this->_like_escape_chr)
-				: '');
+		return 'SELECT "NAME" FROM "SQLITE_MASTER" WHERE "TYPE" = \'table\'' .
+			($prefix_limit !== false && $this->dbprefix != ""
+				? ' AND "NAME" LIKE \'' .
+					$this->escape_like_str($this->dbprefix) .
+					'%\' ' .
+					sprintf($this->_like_escape_str, $this->_like_escape_chr)
+				: "");
 	}
 
 	// --------------------------------------------------------------------
@@ -230,15 +235,19 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 */
 	public function list_fields($table)
 	{
-		if (($result = $this->query('PRAGMA TABLE_INFO('.$this->protect_identifiers($table, TRUE, NULL, FALSE).')')) === FALSE)
-		{
-			return FALSE;
+		if (
+			($result = $this->query(
+				"PRAGMA TABLE_INFO(" .
+					$this->protect_identifiers($table, true, null, false) .
+					")"
+			)) === false
+		) {
+			return false;
 		}
 
-		$fields = array();
-		foreach ($result->result_array() as $row)
-		{
-			$fields[] = $row['name'];
+		$fields = [];
+		foreach ($result->result_array() as $row) {
+			$fields[] = $row["name"];
 		}
 
 		return $fields;
@@ -254,26 +263,31 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 */
 	public function field_data($table)
 	{
-		if (($query = $this->query('PRAGMA TABLE_INFO('.$this->protect_identifiers($table, TRUE, NULL, FALSE).')')) === FALSE)
-		{
-			return FALSE;
+		if (
+			($query = $this->query(
+				"PRAGMA TABLE_INFO(" .
+					$this->protect_identifiers($table, true, null, false) .
+					")"
+			)) === false
+		) {
+			return false;
 		}
 
 		$query = $query->result_array();
-		if (empty($query))
-		{
-			return FALSE;
+		if (empty($query)) {
+			return false;
 		}
 
-		$retval = array();
-		for ($i = 0, $c = count($query); $i < $c; $i++)
-		{
-			$retval[$i]			= new stdClass();
-			$retval[$i]->name		= $query[$i]['name'];
-			$retval[$i]->type		= $query[$i]['type'];
-			$retval[$i]->max_length		= NULL;
-			$retval[$i]->default		= $query[$i]['dflt_value'];
-			$retval[$i]->primary_key	= isset($query[$i]['pk']) ? (int) $query[$i]['pk'] : 0;
+		$retval = [];
+		for ($i = 0, $c = count($query); $i < $c; $i++) {
+			$retval[$i] = new stdClass();
+			$retval[$i]->name = $query[$i]["name"];
+			$retval[$i]->type = $query[$i]["type"];
+			$retval[$i]->max_length = null;
+			$retval[$i]->default = $query[$i]["dflt_value"];
+			$retval[$i]->primary_key = isset($query[$i]["pk"])
+				? (int) $query[$i]["pk"]
+				: 0;
 		}
 
 		return $retval;
@@ -291,7 +305,10 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 */
 	public function error()
 	{
-		return array('code' => $this->conn_id->lastErrorCode(), 'message' => $this->conn_id->lastErrorMsg());
+		return [
+			"code" => $this->conn_id->lastErrorCode(),
+			"message" => $this->conn_id->lastErrorMsg(),
+		];
 	}
 
 	// --------------------------------------------------------------------
@@ -308,7 +325,7 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 */
 	protected function _replace($table, $keys, $values)
 	{
-		return 'INSERT OR '.parent::_replace($table, $keys, $values);
+		return "INSERT OR " . parent::_replace($table, $keys, $values);
 	}
 
 	// --------------------------------------------------------------------
@@ -326,7 +343,7 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 */
 	protected function _truncate($table)
 	{
-		return 'DELETE FROM '.$table;
+		return "DELETE FROM " . $table;
 	}
 
 	// --------------------------------------------------------------------
@@ -340,5 +357,4 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	{
 		$this->conn_id->close();
 	}
-
 }

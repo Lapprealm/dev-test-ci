@@ -14,19 +14,20 @@
  *
  * @since Class available since Release 1.0.0
  */
-class PHPUnit_Framework_MockObject_Matcher_AnyInvokedCount extends PHPUnit_Framework_MockObject_Matcher_InvokedRecorder
+class PHPUnit_Framework_MockObject_Matcher_AnyInvokedCount extends
+	PHPUnit_Framework_MockObject_Matcher_InvokedRecorder
 {
-    /**
-     * @return string
-     */
-    public function toString()
-    {
-        return 'invoked zero or more times';
-    }
+	/**
+	 * @return string
+	 */
+	public function toString()
+	{
+		return "invoked zero or more times";
+	}
 
-    /**
-     */
-    public function verify()
-    {
-    }
+	/**
+	 */
+	public function verify()
+	{
+	}
 }

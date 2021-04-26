@@ -11,6 +11,7 @@
 /**
  * @since Class available since Release 3.0.0
  */
-class PHP_CodeCoverage_RuntimeException extends RuntimeException implements PHP_CodeCoverage_Exception
+class PHP_CodeCoverage_RuntimeException extends RuntimeException implements
+	PHP_CodeCoverage_Exception
 {
 }

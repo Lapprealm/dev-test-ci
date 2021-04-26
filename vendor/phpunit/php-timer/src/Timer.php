@@ -14,27 +14,29 @@ use function hrtime;
 
 final class Timer
 {
-    /**
-     * @psalm-var list<float>
-     */
-    private $startTimes = [];
+	/**
+	 * @psalm-var list<float>
+	 */
+	private $startTimes = [];
 
-    public function start(): void
-    {
-        $this->startTimes[] = (float) hrtime(true);
-    }
+	public function start(): void
+	{
+		$this->startTimes[] = (float) hrtime(true);
+	}
 
-    /**
-     * @throws NoActiveTimerException
-     */
-    public function stop(): Duration
-    {
-        if (empty($this->startTimes)) {
-            throw new NoActiveTimerException(
-                'Timer::start() has to be called before Timer::stop()'
-            );
-        }
+	/**
+	 * @throws NoActiveTimerException
+	 */
+	public function stop(): Duration
+	{
+		if (empty($this->startTimes)) {
+			throw new NoActiveTimerException(
+				"Timer::start() has to be called before Timer::stop()"
+			);
+		}
 
-        return Duration::fromNanoseconds((float) hrtime(true) - array_pop($this->startTimes));
-    }
+		return Duration::fromNanoseconds(
+			(float) hrtime(true) - array_pop($this->startTimes)
+		);
+	}
 }

@@ -1,235 +1,75 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
-/*
-|--------------------------------------------------------------------------
-| Base Site URL
-|--------------------------------------------------------------------------
-*/
-$config['base_url'] = 'http://localhost:8080';
+$config["base_url"] = "http://localhost:8080";
+$config["index_page"] = "";
+$config["uri_protocol"] = "REQUEST_URI";
+$config["url_suffix"] = "";
 
-/*
-|--------------------------------------------------------------------------
-| Index File
-|--------------------------------------------------------------------------
-*/
-$config['index_page'] = '';
+$config["language"] = "english";
+$config["charset"] = "UTF-8";
 
-/*
-|--------------------------------------------------------------------------
-| URI PROTOCOL
-|--------------------------------------------------------------------------
-*/
-$config['uri_protocol']	= 'REQUEST_URI';
+$config["enable_hooks"] = false;
 
-/*
-|--------------------------------------------------------------------------
-| URL suffix
-|--------------------------------------------------------------------------
-*/
-$config['url_suffix'] = '';
+$config["subclass_prefix"] = "MY_";
 
-/*
-|--------------------------------------------------------------------------
-| Default Language
-|--------------------------------------------------------------------------
-*/
-$config['language']	= 'english';
+$config["composer_autoload"] = false;
 
-/*
-|--------------------------------------------------------------------------
-| Default Character Set
-|--------------------------------------------------------------------------
-*/
-$config['charset'] = 'UTF-8';
+$config["permitted_uri_chars"] = "a-z 0-9~%.:_\-";
 
-/*
-|--------------------------------------------------------------------------
-| Enable/Disable System Hooks
-|--------------------------------------------------------------------------
-*/
-$config['enable_hooks'] = FALSE;
+$config["enable_query_strings"] = false;
 
-/*
-|--------------------------------------------------------------------------
-| Class Extension Prefix
-|--------------------------------------------------------------------------
-*/
-$config['subclass_prefix'] = 'MY_';
+$config["controller_trigger"] = "c";
+$config["function_trigger"] = "m";
+$config["directory_trigger"] = "d";
 
-/*
-|--------------------------------------------------------------------------
-| Composer auto-loading
-|--------------------------------------------------------------------------
-*/
-$config['composer_autoload'] = FALSE;
+$config["allow_get_array"] = true;
 
-/*
-|--------------------------------------------------------------------------
-| Allowed URL Characters
-|--------------------------------------------------------------------------
-| DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
-*/
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+$config["log_threshold"] = 0;
+$config["log_path"] = "";
+$config["log_file_extension"] = "";
+$config["log_file_permissions"] = 0644;
+$config["log_date_format"] = "Y-m-d H:i:s";
+$config["error_views_path"] = "";
 
-/*
-|--------------------------------------------------------------------------
-| Enable Query Strings
-|--------------------------------------------------------------------------
-*/
-$config['enable_query_strings'] = FALSE;
-$config['controller_trigger'] = 'c';
-$config['function_trigger'] = 'm';
-$config['directory_trigger'] = 'd';
+$config["cache_path"] = "";
+$config["cache_query_string"] = false;
 
-/*
-|--------------------------------------------------------------------------
-| Allow $_GET array
-|--------------------------------------------------------------------------
-| WARNING: This feature is DEPRECATED and currently available only
-|          for backwards compatibility purposes!
-*/
-$config['allow_get_array'] = TRUE;
+$config["encryption_key"] = "";
 
-/*
-|--------------------------------------------------------------------------
-| Error Logging Threshold
-|--------------------------------------------------------------------------
-*/
-$config['log_threshold'] = 0;
+$config["sess_driver"] = "database";
+$config["sess_cookie_name"] = "ci_session";
+$config["sess_expiration"] = 7200;
+$config["sess_save_path"] = "ci_sessions";
+$config["sess_match_ip"] = false;
+$config["sess_time_to_update"] = 300;
+$config["sess_regenerate_destroy"] = false;
 
-/*
-|--------------------------------------------------------------------------
-| Error Logging Directory Path
-|--------------------------------------------------------------------------
-*/
-$config['log_path'] = '';
+$config["cookie_prefix"] = "";
+$config["cookie_domain"] = "";
+$config["cookie_path"] = "/";
+$config["cookie_secure"] = false;
+$config["cookie_httponly"] = false;
 
-/*
-|--------------------------------------------------------------------------
-| Log File Extension
-|--------------------------------------------------------------------------
-*/
-$config['log_file_extension'] = '';
+$config["standardize_newlines"] = false;
 
-/*
-|--------------------------------------------------------------------------
-| Log File Permissions
-|--------------------------------------------------------------------------
-*/
-$config['log_file_permissions'] = 0644;
+$config["global_xss_filtering"] = true;
 
-/*
-|--------------------------------------------------------------------------
-| Date Format for Logs
-|--------------------------------------------------------------------------
-*/
-$config['log_date_format'] = 'Y-m-d H:i:s';
+$config["csrf_protection"] = true;
+$config["csrf_token_name"] = "csrf_test_name";
+$config["csrf_cookie_name"] = "csrf_cookie_name";
+$config["csrf_expire"] = 7200;
+$config["csrf_regenerate"] = true;
+$config["csrf_exclude_uris"] = [];
 
-/*
-|--------------------------------------------------------------------------
-| Error Views Directory Path
-|--------------------------------------------------------------------------
-*/
-$config['error_views_path'] = '';
+$config["upload_path"] = "./uploads/";
+$config["allowed_types"] = "jpg|png";
+$config["max_size"] = "0";
 
-/*
-|--------------------------------------------------------------------------
-| Cache Directory Path
-|--------------------------------------------------------------------------
-*/
-$config['cache_path'] = '';
+$config["compress_output"] = false;
 
-/*
-|--------------------------------------------------------------------------
-| Cache Include Query String
-|--------------------------------------------------------------------------
-*/
-$config['cache_query_string'] = FALSE;
+$config["time_reference"] = "local";
 
-/*
-|--------------------------------------------------------------------------
-| Encryption Key
-|--------------------------------------------------------------------------
-|
-*/
-$config['encryption_key'] = '';
+$config["rewrite_short_tags"] = false;
 
-/*
-|--------------------------------------------------------------------------
-| Session Variables
-|--------------------------------------------------------------------------
-*/
-$config['sess_driver'] = 'database';
-$config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200;
-$config['sess_save_path'] = 'ci_sessions';
-$config['sess_match_ip'] = FALSE;
-$config['sess_time_to_update'] = 300;
-$config['sess_regenerate_destroy'] = FALSE;
-
-/*
-|--------------------------------------------------------------------------
-| Cookie Related Variables
-|--------------------------------------------------------------------------
-*/
-$config['cookie_prefix']	= '';
-$config['cookie_domain']	= '';
-$config['cookie_path']		= '/';
-$config['cookie_secure']	= FALSE;
-$config['cookie_httponly'] 	= FALSE;
-
-/*
-|--------------------------------------------------------------------------
-| Standardize newlines
-|--------------------------------------------------------------------------
-*/
-$config['standardize_newlines'] = FALSE;
-
-/*
-|--------------------------------------------------------------------------
-| Global XSS Filtering
-|--------------------------------------------------------------------------
-*/
-$config['global_xss_filtering'] = TRUE;
-
-/*
-|--------------------------------------------------------------------------
-| Cross Site Request Forgery
-|--------------------------------------------------------------------------
-| WIP: gonna enable soon
-*/
-$config['csrf_protection'] = FALSE;
-$config['csrf_token_name'] = 'csrf_test_name';
-$config['csrf_cookie_name'] = 'csrf_cookie_name';
-$config['csrf_expire'] = 7200;
-$config['csrf_regenerate'] = TRUE;
-$config['csrf_exclude_uris'] = array();
-
-/*
-|--------------------------------------------------------------------------
-| Output Compression
-|--------------------------------------------------------------------------
-*/
-$config['compress_output'] = FALSE;
-
-/*
-|--------------------------------------------------------------------------
-| Master Time Reference
-|--------------------------------------------------------------------------
-*/
-$config['time_reference'] = 'local';
-
-/*
-|--------------------------------------------------------------------------
-| Rewrite PHP Short Tags
-|--------------------------------------------------------------------------
-*/
-$config['rewrite_short_tags'] = FALSE;
-
-/*
-|--------------------------------------------------------------------------
-| Reverse Proxy IPs
-|--------------------------------------------------------------------------
-*/
-$config['proxy_ips'] = '';
+$config["proxy_ips"] = "";

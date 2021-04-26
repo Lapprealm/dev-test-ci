@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * CodeIgniter Typography Helpers
@@ -49,8 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('nl2br_except_pre'))
-{
+if (!function_exists("nl2br_except_pre")) {
 	/**
 	 * Convert newlines to HTML line breaks except within PRE tags
 	 *
@@ -59,16 +58,15 @@ if ( ! function_exists('nl2br_except_pre'))
 	 */
 	function nl2br_except_pre($str)
 	{
-		$CI =& get_instance();
-		$CI->load->library('typography');
+		$CI = &get_instance();
+		$CI->load->library("typography");
 		return $CI->typography->nl2br_except_pre($str);
 	}
 }
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('auto_typography'))
-{
+if (!function_exists("auto_typography")) {
 	/**
 	 * Auto Typography Wrapper Function
 	 *
@@ -76,18 +74,17 @@ if ( ! function_exists('auto_typography'))
 	 * @param	bool	$reduce_linebreaks = FALSE	whether to reduce multiple instances of double newlines to two
 	 * @return	string
 	 */
-	function auto_typography($str, $reduce_linebreaks = FALSE)
+	function auto_typography($str, $reduce_linebreaks = false)
 	{
-		$CI =& get_instance();
-		$CI->load->library('typography');
+		$CI = &get_instance();
+		$CI->load->library("typography");
 		return $CI->typography->auto_typography($str, $reduce_linebreaks);
 	}
 }
 
 // --------------------------------------------------------------------
 
-if ( ! function_exists('entity_decode'))
-{
+if (!function_exists("entity_decode")) {
 	/**
 	 * HTML Entities Decode
 	 *
@@ -97,7 +94,7 @@ if ( ! function_exists('entity_decode'))
 	 * @param	string
 	 * @return	string
 	 */
-	function entity_decode($str, $charset = NULL)
+	function entity_decode($str, $charset = null)
 	{
 		return get_instance()->security->entity_decode($str, $charset);
 	}

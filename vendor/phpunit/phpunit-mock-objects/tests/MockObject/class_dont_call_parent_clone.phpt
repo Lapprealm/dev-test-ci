@@ -4,23 +4,18 @@ PHPUnit_Framework_MockObject_Generator::generate('Foo', array(), 'MockFoo', fals
 <?php
 class Foo
 {
-    public function __clone()
-    {
-    }
+	public function __clone()
+	{
+	}
 }
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . "/../../vendor/autoload.php";
 
-$generator = new PHPUnit_Framework_MockObject_Generator;
+$generator = new PHPUnit_Framework_MockObject_Generator();
 
-$mock = $generator->generate(
-    'Foo',
-    array(),
-    'MockFoo',
-    false
-);
+$mock = $generator->generate("Foo", [], "MockFoo", false);
 
-print $mock['code'];
+print $mock["code"];
 ?>
 --EXPECTF--
 class MockFoo extends Foo implements PHPUnit_Framework_MockObject_MockObject

@@ -22,64 +22,65 @@ use Prophecy\Doubler\Generator\Node\MethodNode;
  */
 class SplFileInfoPatch implements ClassPatchInterface
 {
-    /**
-     * Supports everything that extends SplFileInfo.
-     *
-     * @param ClassNode $node
-     *
-     * @return bool
-     */
-    public function supports(ClassNode $node)
-    {
-        if (null === $node->getParentClass()) {
-            return false;
-        }
+	/**
+	 * Supports everything that extends SplFileInfo.
+	 *
+	 * @param ClassNode $node
+	 *
+	 * @return bool
+	 */
+	public function supports(ClassNode $node)
+	{
+		if (null === $node->getParentClass()) {
+			return false;
+		}
 
-        return 'SplFileInfo' === $node->getParentClass()
-            || is_subclass_of($node->getParentClass(), 'SplFileInfo')
-        ;
-    }
+		return "SplFileInfo" === $node->getParentClass() ||
+			is_subclass_of($node->getParentClass(), "SplFileInfo");
+	}
 
-    /**
-     * Updated constructor code to call parent one with dummy file argument.
-     *
-     * @param ClassNode $node
-     */
-    public function apply(ClassNode $node)
-    {
-        if ($node->hasMethod('__construct')) {
-            $constructor = $node->getMethod('__construct');
-        } else {
-            $constructor = new MethodNode('__construct');
-            $node->addMethod($constructor);
-        }
+	/**
+	 * Updated constructor code to call parent one with dummy file argument.
+	 *
+	 * @param ClassNode $node
+	 */
+	public function apply(ClassNode $node)
+	{
+		if ($node->hasMethod("__construct")) {
+			$constructor = $node->getMethod("__construct");
+		} else {
+			$constructor = new MethodNode("__construct");
+			$node->addMethod($constructor);
+		}
 
-        if ($this->nodeIsDirectoryIterator($node)) {
-            $constructor->setCode('return parent::__construct("' . __DIR__ . '");');
-            return;
-        }
+		if ($this->nodeIsDirectoryIterator($node)) {
+			$constructor->setCode(
+				'return parent::__construct("' . __DIR__ . '");'
+			);
+			return;
+		}
 
-        $constructor->useParentCode();
-    }
+		$constructor->useParentCode();
+	}
 
-    /**
-     * Returns patch priority, which determines when patch will be applied.
-     *
-     * @return int Priority number (higher - earlier)
-     */
-    public function getPriority()
-    {
-        return 50;
-    }
+	/**
+	 * Returns patch priority, which determines when patch will be applied.
+	 *
+	 * @return int Priority number (higher - earlier)
+	 */
+	public function getPriority()
+	{
+		return 50;
+	}
 
-    /**
-     * @param ClassNode $node
-     * @return boolean
-     */
-    private function nodeIsDirectoryIterator(ClassNode $node)
-    {
-        $parent = $node->getParentClass();
-        return 'DirectoryIterator' === $parent
-            || is_subclass_of($parent, 'DirectoryIterator');
-    }
+	/**
+	 * @param ClassNode $node
+	 * @return boolean
+	 */
+	private function nodeIsDirectoryIterator(ClassNode $node)
+	{
+		$parent = $node->getParentClass();
+		return "DirectoryIterator" === $parent ||
+			is_subclass_of($parent, "DirectoryIterator");
+	}
 }

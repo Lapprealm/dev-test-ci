@@ -14,6 +14,8 @@
  *
  * @since Class available since Release 3.1.0
  */
-class PHPUnit_Framework_SkippedTestSuiteError extends PHPUnit_Framework_AssertionFailedError implements PHPUnit_Framework_SkippedTest
+class PHPUnit_Framework_SkippedTestSuiteError
+	extends PHPUnit_Framework_AssertionFailedError
+	implements PHPUnit_Framework_SkippedTest
 {
 }

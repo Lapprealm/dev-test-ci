@@ -14,6 +14,7 @@
  *
  * @since Class available since Release 5.2.0
  */
-class PHPUnit_Framework_CoveredCodeNotExecutedException extends PHPUnit_Framework_RiskyTestError
+class PHPUnit_Framework_CoveredCodeNotExecutedException extends
+	PHPUnit_Framework_RiskyTestError
 {
 }

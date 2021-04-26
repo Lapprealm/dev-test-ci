@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * CodeIgniter String Helpers
@@ -49,8 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('trim_slashes'))
-{
+if (!function_exists("trim_slashes")) {
 	/**
 	 * Trim Slashes
 	 *
@@ -70,14 +69,13 @@ if ( ! function_exists('trim_slashes'))
 	 */
 	function trim_slashes($str)
 	{
-		return trim($str, '/');
+		return trim($str, "/");
 	}
 }
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('strip_slashes'))
-{
+if (!function_exists("strip_slashes")) {
 	/**
 	 * Strip Slashes
 	 *
@@ -88,13 +86,11 @@ if ( ! function_exists('strip_slashes'))
 	 */
 	function strip_slashes($str)
 	{
-		if ( ! is_array($str))
-		{
+		if (!is_array($str)) {
 			return stripslashes($str);
 		}
 
-		foreach ($str as $key => $val)
-		{
+		foreach ($str as $key => $val) {
 			$str[$key] = strip_slashes($val);
 		}
 
@@ -104,8 +100,7 @@ if ( ! function_exists('strip_slashes'))
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('strip_quotes'))
-{
+if (!function_exists("strip_quotes")) {
 	/**
 	 * Strip Quotes
 	 *
@@ -116,14 +111,13 @@ if ( ! function_exists('strip_quotes'))
 	 */
 	function strip_quotes($str)
 	{
-		return str_replace(array('"', "'"), '', $str);
+		return str_replace(['"', "'"], "", $str);
 	}
 }
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('quotes_to_entities'))
-{
+if (!function_exists("quotes_to_entities")) {
 	/**
 	 * Quotes to Entities
 	 *
@@ -134,14 +128,17 @@ if ( ! function_exists('quotes_to_entities'))
 	 */
 	function quotes_to_entities($str)
 	{
-		return str_replace(array("\'","\"","'",'"'), array("&#39;","&quot;","&#39;","&quot;"), $str);
+		return str_replace(
+			["\'", "\"", "'", '"'],
+			["&#39;", "&quot;", "&#39;", "&quot;"],
+			$str
+		);
 	}
 }
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('reduce_double_slashes'))
-{
+if (!function_exists("reduce_double_slashes")) {
 	/**
 	 * Reduce Double Slashes
 	 *
@@ -159,14 +156,13 @@ if ( ! function_exists('reduce_double_slashes'))
 	 */
 	function reduce_double_slashes($str)
 	{
-		return preg_replace('#(^|[^:])//+#', '\\1/', $str);
+		return preg_replace("#(^|[^:])//+#", '\\1/', $str);
 	}
 }
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('reduce_multiples'))
-{
+if (!function_exists("reduce_multiples")) {
 	/**
 	 * Reduce Multiples
 	 *
@@ -183,17 +179,20 @@ if ( ! function_exists('reduce_multiples'))
 	 * @param	bool	TRUE/FALSE - whether to trim the character from the beginning/end
 	 * @return	string
 	 */
-	function reduce_multiples($str, $character = ',', $trim = FALSE)
+	function reduce_multiples($str, $character = ",", $trim = false)
 	{
-		$str = preg_replace('#'.preg_quote($character, '#').'{2,}#', $character, $str);
-		return ($trim === TRUE) ? trim($str, $character) : $str;
+		$str = preg_replace(
+			"#" . preg_quote($character, "#") . "{2,}#",
+			$character,
+			$str
+		);
+		return $trim === true ? trim($str, $character) : $str;
 	}
 }
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('random_string'))
-{
+if (!function_exists("random_string")) {
 	/**
 	 * Create a "Random" String
 	 *
@@ -201,46 +200,49 @@ if ( ! function_exists('random_string'))
 	 * @param	int	number of characters
 	 * @return	string
 	 */
-	function random_string($type = 'alnum', $len = 8)
+	function random_string($type = "alnum", $len = 8)
 	{
-		switch ($type)
-		{
-			case 'basic':
+		switch ($type) {
+			case "basic":
 				return mt_rand();
-			case 'alnum':
-			case 'numeric':
-			case 'nozero':
-			case 'alpha':
-				switch ($type)
-				{
-					case 'alpha':
-						$pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			case "alnum":
+			case "numeric":
+			case "nozero":
+			case "alpha":
+				switch ($type) {
+					case "alpha":
+						$pool =
+							"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 						break;
-					case 'alnum':
-						$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+					case "alnum":
+						$pool =
+							"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 						break;
-					case 'numeric':
-						$pool = '0123456789';
+					case "numeric":
+						$pool = "0123456789";
 						break;
-					case 'nozero':
-						$pool = '123456789';
+					case "nozero":
+						$pool = "123456789";
 						break;
 				}
-				return substr(str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))), 0, $len);
-			case 'unique': // todo: remove in 3.1+
-			case 'md5':
+				return substr(
+					str_shuffle(str_repeat($pool, ceil($len / strlen($pool)))),
+					0,
+					$len
+				);
+			case "unique": // todo: remove in 3.1+
+			case "md5":
 				return md5(uniqid(mt_rand()));
-			case 'encrypt': // todo: remove in 3.1+
-			case 'sha1':
-				return sha1(uniqid(mt_rand(), TRUE));
+			case "encrypt": // todo: remove in 3.1+
+			case "sha1":
+				return sha1(uniqid(mt_rand(), true));
 		}
 	}
 }
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('increment_string'))
-{
+if (!function_exists("increment_string")) {
 	/**
 	 * Add's _1 to a string or increment the ending number to allow _2, _3, etc
 	 *
@@ -249,17 +251,22 @@ if ( ! function_exists('increment_string'))
 	 * @param	string	Which number should be used for the first dupe increment
 	 * @return	string
 	 */
-	function increment_string($str, $separator = '_', $first = 1)
+	function increment_string($str, $separator = "_", $first = 1)
 	{
-		preg_match('/(.+)'.preg_quote($separator, '/').'([0-9]+)$/', $str, $match);
-		return isset($match[2]) ? $match[1].$separator.($match[2] + 1) : $str.$separator.$first;
+		preg_match(
+			"/(.+)" . preg_quote($separator, "/") . '([0-9]+)$/',
+			$str,
+			$match
+		);
+		return isset($match[2])
+			? $match[1] . $separator . ($match[2] + 1)
+			: $str . $separator . $first;
 	}
 }
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('alternator'))
-{
+if (!function_exists("alternator")) {
 	/**
 	 * Alternator
 	 *
@@ -272,21 +279,19 @@ if ( ! function_exists('alternator'))
 	{
 		static $i;
 
-		if (func_num_args() === 0)
-		{
+		if (func_num_args() === 0) {
 			$i = 0;
-			return '';
+			return "";
 		}
 
 		$args = func_get_args();
-		return $args[($i++ % count($args))];
+		return $args[$i++ % count($args)];
 	}
 }
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('repeater'))
-{
+if (!function_exists("repeater")) {
 	/**
 	 * Repeater function
 	 *
@@ -299,6 +304,6 @@ if ( ! function_exists('repeater'))
 	 */
 	function repeater($data, $num = 1)
 	{
-		return ($num > 0) ? str_repeat($data, $num) : '';
+		return $num > 0 ? str_repeat($data, $num) : "";
 	}
 }

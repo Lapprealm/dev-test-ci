@@ -13,23 +13,24 @@
  *
  * @since Class available since Release 1.0.0
  */
-class PHPUnit_Framework_MockObject_Matcher_AnyParameters extends PHPUnit_Framework_MockObject_Matcher_StatelessInvocation
+class PHPUnit_Framework_MockObject_Matcher_AnyParameters extends
+	PHPUnit_Framework_MockObject_Matcher_StatelessInvocation
 {
-    /**
-     * @return string
-     */
-    public function toString()
-    {
-        return 'with any parameters';
-    }
+	/**
+	 * @return string
+	 */
+	public function toString()
+	{
+		return "with any parameters";
+	}
 
-    /**
-     * @param PHPUnit_Framework_MockObject_Invocation $invocation
-     *
-     * @return bool
-     */
-    public function matches(PHPUnit_Framework_MockObject_Invocation $invocation)
-    {
-        return true;
-    }
+	/**
+	 * @param PHPUnit_Framework_MockObject_Invocation $invocation
+	 *
+	 * @return bool
+	 */
+	public function matches(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+		return true;
+	}
 }

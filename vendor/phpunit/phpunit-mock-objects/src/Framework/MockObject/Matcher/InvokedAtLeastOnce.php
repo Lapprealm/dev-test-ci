@@ -16,30 +16,31 @@
  *
  * @since Class available since Release 1.0.0
  */
-class PHPUnit_Framework_MockObject_Matcher_InvokedAtLeastOnce extends PHPUnit_Framework_MockObject_Matcher_InvokedRecorder
+class PHPUnit_Framework_MockObject_Matcher_InvokedAtLeastOnce extends
+	PHPUnit_Framework_MockObject_Matcher_InvokedRecorder
 {
-    /**
-     * @return string
-     */
-    public function toString()
-    {
-        return 'invoked at least once';
-    }
+	/**
+	 * @return string
+	 */
+	public function toString()
+	{
+		return "invoked at least once";
+	}
 
-    /**
-     * Verifies that the current expectation is valid. If everything is OK the
-     * code should just return, if not it must throw an exception.
-     *
-     * @throws PHPUnit_Framework_ExpectationFailedException
-     */
-    public function verify()
-    {
-        $count = $this->getInvocationCount();
+	/**
+	 * Verifies that the current expectation is valid. If everything is OK the
+	 * code should just return, if not it must throw an exception.
+	 *
+	 * @throws PHPUnit_Framework_ExpectationFailedException
+	 */
+	public function verify()
+	{
+		$count = $this->getInvocationCount();
 
-        if ($count < 1) {
-            throw new PHPUnit_Framework_ExpectationFailedException(
-                'Expected invocation at least once but it never occured.'
-            );
-        }
-    }
+		if ($count < 1) {
+			throw new PHPUnit_Framework_ExpectationFailedException(
+				"Expected invocation at least once but it never occured."
+			);
+		}
+	}
 }

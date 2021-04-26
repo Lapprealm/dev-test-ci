@@ -2,12 +2,11 @@
 GH-1437: Risky test messages mask failures
 --FILE--
 <?php
+$_SERVER["argv"][1] = "--no-configuration";
+$_SERVER["argv"][2] = "Issue1437Test";
+$_SERVER["argv"][3] = dirname(__FILE__) . "/1437/Issue1437Test.php";
 
-$_SERVER['argv'][1] = '--no-configuration';
-$_SERVER['argv'][2] = 'Issue1437Test';
-$_SERVER['argv'][3] = dirname(__FILE__) . '/1437/Issue1437Test.php';
-
-require __DIR__ . '/../../bootstrap.php';
+require __DIR__ . "/../../bootstrap.php";
 PHPUnit_TextUI_Command::main();
 ?>
 --EXPECTF--

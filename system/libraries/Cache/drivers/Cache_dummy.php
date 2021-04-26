@@ -35,7 +35,7 @@
  * @since	Version 2.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * CodeIgniter Dummy Caching Class
@@ -46,8 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link
  */
-class CI_Cache_dummy extends CI_Driver {
-
+class CI_Cache_dummy extends CI_Driver
+{
 	/**
 	 * Get
 	 *
@@ -58,7 +58,7 @@ class CI_Cache_dummy extends CI_Driver {
 	 */
 	public function get($id)
 	{
-		return FALSE;
+		return false;
 	}
 
 	// ------------------------------------------------------------------------
@@ -72,9 +72,9 @@ class CI_Cache_dummy extends CI_Driver {
 	 * @param	bool	Whether to store the raw value
 	 * @return	bool	TRUE, Simulating success
 	 */
-	public function save($id, $data, $ttl = 60, $raw = FALSE)
+	public function save($id, $data, $ttl = 60, $raw = false)
 	{
-		return TRUE;
+		return true;
 	}
 
 	// ------------------------------------------------------------------------
@@ -87,7 +87,7 @@ class CI_Cache_dummy extends CI_Driver {
 	 */
 	public function delete($id)
 	{
-		return TRUE;
+		return true;
 	}
 
 	// ------------------------------------------------------------------------
@@ -101,7 +101,7 @@ class CI_Cache_dummy extends CI_Driver {
 	 */
 	public function increment($id, $offset = 1)
 	{
-		return TRUE;
+		return true;
 	}
 
 	// ------------------------------------------------------------------------
@@ -115,7 +115,7 @@ class CI_Cache_dummy extends CI_Driver {
 	 */
 	public function decrement($id, $offset = 1)
 	{
-		return TRUE;
+		return true;
 	}
 
 	// ------------------------------------------------------------------------
@@ -127,7 +127,7 @@ class CI_Cache_dummy extends CI_Driver {
 	 */
 	public function clean()
 	{
-		return TRUE;
+		return true;
 	}
 
 	// ------------------------------------------------------------------------
@@ -138,10 +138,10 @@ class CI_Cache_dummy extends CI_Driver {
 	 * @param	string	user/filehits
 	 * @return	bool	FALSE
 	 */
-	 public function cache_info($type = NULL)
-	 {
-		 return FALSE;
-	 }
+	public function cache_info($type = null)
+	{
+		return false;
+	}
 
 	// ------------------------------------------------------------------------
 
@@ -153,7 +153,7 @@ class CI_Cache_dummy extends CI_Driver {
 	 */
 	public function get_metadata($id)
 	{
-		return FALSE;
+		return false;
 	}
 
 	// ------------------------------------------------------------------------
@@ -166,7 +166,6 @@ class CI_Cache_dummy extends CI_Driver {
 	 */
 	public function is_supported()
 	{
-		return TRUE;
+		return true;
 	}
-
 }

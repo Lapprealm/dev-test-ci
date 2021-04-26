@@ -15,27 +15,28 @@ use SebastianBergmann\Exporter\Exporter;
  *
  * @since Class available since Release 1.0.0
  */
-class PHPUnit_Framework_MockObject_Stub_Return implements PHPUnit_Framework_MockObject_Stub
+class PHPUnit_Framework_MockObject_Stub_Return implements
+	PHPUnit_Framework_MockObject_Stub
 {
-    protected $value;
+	protected $value;
 
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
+	public function __construct($value)
+	{
+		$this->value = $value;
+	}
 
-    public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
-    {
-        return $this->value;
-    }
+	public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
+	{
+		return $this->value;
+	}
 
-    public function toString()
-    {
-        $exporter = new Exporter;
+	public function toString()
+	{
+		$exporter = new Exporter();
 
-        return sprintf(
-            'return user-specified value %s',
-            $exporter->export($this->value)
-        );
-    }
+		return sprintf(
+			"return user-specified value %s",
+			$exporter->export($this->value)
+		);
+	}
 }

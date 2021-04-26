@@ -1,44 +1,9 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
-/*
-|--------------------------------------------------------------------------
-| Enable/Disable Migrations
-|--------------------------------------------------------------------------
-*/
-$config['migration_enabled'] = FALSE;
-
-/*
-|--------------------------------------------------------------------------
-| Migration Type
-|--------------------------------------------------------------------------
-*/
-$config['migration_type'] = 'timestamp';
-
-/*
-|--------------------------------------------------------------------------
-| Migrations table
-|--------------------------------------------------------------------------
-*/
-$config['migration_table'] = 'migrations';
-
-/*
-|--------------------------------------------------------------------------
-| Auto Migrate To Latest
-|--------------------------------------------------------------------------
-*/
-$config['migration_auto_latest'] = FALSE;
-
-/*
-|--------------------------------------------------------------------------
-| Migrations version
-|--------------------------------------------------------------------------
-*/
-$config['migration_version'] = 0;
-
-/*
-|--------------------------------------------------------------------------
-| Migrations Path
-|--------------------------------------------------------------------------
-*/
-$config['migration_path'] = APPPATH.'migrations/';
+$config["migration_enabled"] = false;
+$config["migration_type"] = "timestamp";
+$config["migration_table"] = "migrations";
+$config["migration_auto_latest"] = false;
+$config["migration_version"] = 0;
+$config["migration_path"] = APPPATH . "migrations/";

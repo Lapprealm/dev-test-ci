@@ -18,55 +18,56 @@ use org\bovigo\vfs\vfsStream;
  */
 class vfsStreamStructureVisitorTestCase extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @test
-     */
-    public function visitFileCreatesStructureForFile()
-    {
-        $structureVisitor = new vfsStreamStructureVisitor();
-        $this->assertEquals(array('foo.txt' => 'test'),
-                            $structureVisitor->visitFile(vfsStream::newFile('foo.txt')
-                                                                  ->withContent('test')
-                                               )
-                                             ->getStructure()
-        );
-    }
+	/**
+	 * @test
+	 */
+	public function visitFileCreatesStructureForFile()
+	{
+		$structureVisitor = new vfsStreamStructureVisitor();
+		$this->assertEquals(
+			["foo.txt" => "test"],
+			$structureVisitor
+				->visitFile(vfsStream::newFile("foo.txt")->withContent("test"))
+				->getStructure()
+		);
+	}
 
-    /**
-     * @test
-     */
-    public function visitDirectoryCreatesStructureForDirectory()
-    {
-        $structureVisitor = new vfsStreamStructureVisitor();
-        $this->assertEquals(array('baz' => array()),
-                            $structureVisitor->visitDirectory(vfsStream::newDirectory('baz'))
-                                             ->getStructure()
-        );
-    }
+	/**
+	 * @test
+	 */
+	public function visitDirectoryCreatesStructureForDirectory()
+	{
+		$structureVisitor = new vfsStreamStructureVisitor();
+		$this->assertEquals(
+			["baz" => []],
+			$structureVisitor
+				->visitDirectory(vfsStream::newDirectory("baz"))
+				->getStructure()
+		);
+	}
 
-    /**
-     * @test
-     */
-    public function visitRecursiveDirectoryStructure()
-    {
-        $root         = vfsStream::setup('root',
-                                         null,
-                                         array('test' => array('foo'     => array('test.txt' => 'hello'),
-                                                               'baz.txt' => 'world'
-                                                         ),
-                                               'foo.txt' => ''
-                                         )
-                        );
-        $structureVisitor = new vfsStreamStructureVisitor();
-        $this->assertEquals(array('root' => array('test' => array('foo'     => array('test.txt' => 'hello'),
-                                                                  'baz.txt' => 'world'
-                                                                               ),
-                                                                  'foo.txt' => ''
-                                            ),
-                            ),
-                            $structureVisitor->visitDirectory($root)
-                                             ->getStructure()
-        );
-    }
+	/**
+	 * @test
+	 */
+	public function visitRecursiveDirectoryStructure()
+	{
+		$root = vfsStream::setup("root", null, [
+			"test" => ["foo" => ["test.txt" => "hello"], "baz.txt" => "world"],
+			"foo.txt" => "",
+		]);
+		$structureVisitor = new vfsStreamStructureVisitor();
+		$this->assertEquals(
+			[
+				"root" => [
+					"test" => [
+						"foo" => ["test.txt" => "hello"],
+						"baz.txt" => "world",
+					],
+					"foo.txt" => "",
+				],
+			],
+			$structureVisitor->visitDirectory($root)->getStructure()
+		);
+	}
 }
 ?>

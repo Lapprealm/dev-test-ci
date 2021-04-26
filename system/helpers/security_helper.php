@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
 
 /**
  * CodeIgniter Security Helpers
@@ -49,8 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('xss_clean'))
-{
+if (!function_exists("xss_clean")) {
 	/**
 	 * XSS Filtering
 	 *
@@ -58,7 +57,7 @@ if ( ! function_exists('xss_clean'))
 	 * @param	bool	whether or not the content is an image file
 	 * @return	string
 	 */
-	function xss_clean($str, $is_image = FALSE)
+	function xss_clean($str, $is_image = false)
 	{
 		return get_instance()->security->xss_clean($str, $is_image);
 	}
@@ -66,8 +65,7 @@ if ( ! function_exists('xss_clean'))
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('sanitize_filename'))
-{
+if (!function_exists("sanitize_filename")) {
 	/**
 	 * Sanitize Filename
 	 *
@@ -82,8 +80,7 @@ if ( ! function_exists('sanitize_filename'))
 
 // --------------------------------------------------------------------
 
-if ( ! function_exists('do_hash'))
-{
+if (!function_exists("do_hash")) {
 	/**
 	 * Hash encode a string
 	 *
@@ -93,11 +90,10 @@ if ( ! function_exists('do_hash'))
 	 * @param	string	$type = 'sha1'
 	 * @return	string
 	 */
-	function do_hash($str, $type = 'sha1')
+	function do_hash($str, $type = "sha1")
 	{
-		if ( ! in_array(strtolower($type), hash_algos()))
-		{
-			$type = 'md5';
+		if (!in_array(strtolower($type), hash_algos())) {
+			$type = "md5";
 		}
 
 		return hash($type, $str);
@@ -106,8 +102,7 @@ if ( ! function_exists('do_hash'))
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('strip_image_tags'))
-{
+if (!function_exists("strip_image_tags")) {
 	/**
 	 * Strip Image Tags
 	 *
@@ -122,8 +117,7 @@ if ( ! function_exists('strip_image_tags'))
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('encode_php_tags'))
-{
+if (!function_exists("encode_php_tags")) {
 	/**
 	 * Convert PHP tags to entities
 	 *
@@ -132,6 +126,6 @@ if ( ! function_exists('encode_php_tags'))
 	 */
 	function encode_php_tags($str)
 	{
-		return str_replace(array('<?', '?>'), array('&lt;?', '?&gt;'), $str);
+		return str_replace(["<?", "?>"], ["&lt;?", "?&gt;"], $str);
 	}
 }
